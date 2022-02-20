@@ -4,4 +4,7 @@ For now it is in french and it only works through your terminal or things like j
 Have fun !
 
 Authors (french version) : Amaury Franssen, Farmata Sidibe, Abdoulaye Diop. 
+<br>
 Authors (english version using PHP) : Amaury Franssen.
+
+PS: the PHP english version can't be used within a webpage for now. It is pure PHP without any interaction with browsers/html.
