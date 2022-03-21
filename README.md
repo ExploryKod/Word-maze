@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="100%" src="readme-image-title.jpeg" />
+  <img width="100%" src="./readme-image-title.jpeg" />
 </p>
 
 # <p align="center"> Word Maze </p>
