@@ -29,7 +29,7 @@ This is my first project using python.
 I want to compare both languages by coding the same game in these two languages. 
 As a consequence I'll have a better understanding of these languages by seeing differences.
 
-### 2 versions 
+### The project has two versions:
 #### 1. French version in python : a collective project.
 ##### Authors: 
 - [Amaury Franssen](https://github.com/ExploryKod)
