@@ -30,13 +30,13 @@ I want to compare both languages by coding the same game in these two languages.
 As a consequence I'll have a better understanding of these languages by seeing differences.
 
 ### 2 versions 
-#### French version in python : a collective project.
+#### 1. French version in python : a collective project.
 ##### Authors: 
 - [Amaury Franssen](https://github.com/ExploryKod)
 - [Farmata Sidibe](https://github.com/Farmata-sidibe) 
 - Abdoulaye Diop.
 
-#### English version using PHP (this version remains unfinished for now.) 
+#### 2. English version using PHP (this version remains unfinished for now.) 
 ##### Author : Amaury Franssen. 
 
 
