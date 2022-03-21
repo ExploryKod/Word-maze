@@ -1,5 +1,11 @@
-## Word Maze: enter in a game to play with words
-<img src="" style="text-align: center">
+<p align="center">
+  <img width="100%" src="repository-open-graph-template.png" />
+</p>
+
+# <p align="center"> Word Maze </p>
+
+## A game to play with words
+
 ### Rules of the game
 You need to guess 3 words that the program choose among a list of secret words. 
 You have one point by good answer.
