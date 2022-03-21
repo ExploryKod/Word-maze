@@ -31,9 +31,12 @@ As a consequence I'll have a better understanding of these languages by seeing d
 
 ### 2 versions 
 #### French version in python : a collective project.
-#### Authors: Amaury Franssen, Farmata Sidibe, Abdoulaye Diop.
+##### Authors: 
+- [Amaury Franssen](https://github.com/ExploryKod)
+- [Farmata Sidibe](https://github.com/Farmata-sidibe) 
+- Abdoulaye Diop.
 
 #### English version using PHP (this version remains unfinished for now.) 
-#### Author : Amaury Franssen. 
+##### Author : Amaury Franssen. 
 
 
