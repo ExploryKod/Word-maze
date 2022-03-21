@@ -1,4 +1,4 @@
-## A game to play with words
+## Word Maze: enter in a game to play with words
 
 ### Rules of the game
 You need to guess 3 words that the program choose among a list of secret words. 
