@@ -1,5 +1,6 @@
+
 <p align="center">
-  <img width="200px" src="./readme-image-title.jpeg" />
+  <img width="50%" src="cover.png" />
 </p>
 
 # <p align="center"> Word Maze </p>
