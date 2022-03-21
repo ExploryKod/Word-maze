@@ -7,6 +7,7 @@ You win only if 3 words are found.
 
 ## Installation
 You need to import it on your favorit IDE and play from your terminal.
+You need to install PHP(https://www.php.net/downloads.php) and/or python (https://www.python.org/downloads/) locally.
 
 ## My learning goals
 
