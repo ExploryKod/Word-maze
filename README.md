@@ -1,5 +1,5 @@
 ## Word Maze: enter in a game to play with words
-
+<img src="" style="text-align: center">
 ### Rules of the game
 You need to guess 3 words that the program choose among a list of secret words. 
 You have one point by good answer.
@@ -7,8 +7,8 @@ You win only if 3 words are found.
 
 ### Installation
 You need to import it on your favorit IDE and play from your terminal.
-You need to install locally php or python:
-PHP: https://www.php.net/downloads.php) 
+You need to install locally php or python:<br/>
+PHP: https://www.php.net/downloads.php) <br/>
 python : https://www.python.org/downloads/)
 
 With python you can also use Colab through jupyter Notebook : https://colab.research.google.com/.
