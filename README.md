@@ -36,7 +36,7 @@ As a consequence I'll have a better understanding of these languages by seeing d
 - [Farmata Sidibe](https://github.com/Farmata-sidibe) 
 - Abdoulaye Diop.
 
-#### 2. English version using PHP (this version remains unfinished for now.) 
+#### 2. English version using PHP.
 ##### Author : Amaury Franssen. 
 
 
