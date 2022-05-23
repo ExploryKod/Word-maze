@@ -140,7 +140,7 @@ function turn_to_play($three_secret_w){
         
         // echo "\nSECRET WORDS FOR DEBUGG:";
         // var_dump($three_secret_w);
-        echo "\nEnter one word (words are all in lower case): ";
+        echo "\n Enter one word (words are all in lower case): ";
         $found_word = readline();
             if (in_array($found_word,$already_found) === True){     
                 echo "\n{$found_word} have been chosen before so choose another word";
