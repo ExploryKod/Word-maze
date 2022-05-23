@@ -1,14 +1,5 @@
 <?php 
 
-chose_list($) => choix d'une liste selon un paramètre, retourne ARRAY de 3 mot selon rand(0,lenarray)
-
-
-string_of_words($ - returnchose_list) => retourne une liste de mots collés STRING à partir de return du chose_list($)
-fast_sort($ - return string_of_words) => retourne un ARRAY de lettres ordonnées
-letters_not_twice($ - return of fast_word) => retourne un ARRAY de lettres uniques
-disorder_letters($ - return from no_letter_twice) => retourne un array de lettres désordonnées
-style_letters($ - return from disorder_letter) => stylise les lettres 
-
 
 function chose_list($num_round){
 # ici nous aimerions utiliser MySQL pour que la base soit trés grande et aussi ne plus pouvoir accéder à ceux déjà données.
