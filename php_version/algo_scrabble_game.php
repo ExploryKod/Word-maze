@@ -2,7 +2,7 @@
 
 
 function chose_list($num_round){
-# ici nous aimerions utiliser MySQL pour que la base soit trés grande et aussi ne plus pouvoir accéder à ceux déjà données.
+
     if($num_round == 1){
         $words_list_1 = ["cooperation","love","like","friendly","ennemy","mother","aunt","sibling","lovely"];
         $words_list_2 = ["day","month","year","thanksgiving","date","deadline","time","planning","gregorien"];
