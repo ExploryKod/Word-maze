@@ -1,31 +1,14 @@
 <?php 
 
-// Ce code est pourri : passé au crible du Clean Code, que devient-il ? 
-// Comment remplacer les fonction prédéfinis par des algos de qualité ? 
-
-// PBM :
-/*
- 
-- UPPER / LOWER 
-
- */
-
-
-// TABLE LOGIQUE
-/* 
-
 chose_list($) => choix d'une liste selon un paramètre, retourne ARRAY de 3 mot selon rand(0,lenarray)
 
-PACKAGE 01 : FROM WORDS TO MELT LETTERS
+
 string_of_words($ - returnchose_list) => retourne une liste de mots collés STRING à partir de return du chose_list($)
 fast_sort($ - return string_of_words) => retourne un ARRAY de lettres ordonnées
 letters_not_twice($ - return of fast_word) => retourne un ARRAY de lettres uniques
 disorder_letters($ - return from no_letter_twice) => retourne un array de lettres désordonnées
 style_letters($ - return from disorder_letter) => stylise les lettres 
 
-PACKAGE 02 : FROM LETTERS TO WIN / OVER
-
-*/
 
 function chose_list($num_round){
 # ici nous aimerions utiliser MySQL pour que la base soit trés grande et aussi ne plus pouvoir accéder à ceux déjà données.
@@ -47,7 +30,7 @@ function chose_list($num_round){
     
     elseif($num_round == 2){
 
-// Toujours garder 8 indices (0 à 8 inclu) c'est à dire le count de la 1ère variable - pkoi mettre des shuffle(words_list_1) ne marche pas ? (NULL is given as result)
+
         $words_list_1 = ["pluie","montagne","violon","guitare","endives","chicoree","coron","fromage","emmental"];
         $words_list_2 = ["banshee","kraken","ulyss","sirènes","gevaudan","sparte","mythes","mage","gandalf"];
         $words_list_3 = ["contrat","juge","rêtre","penal","ainesse","statuer","surseoir", "clause","rétroactif"];
@@ -226,7 +209,7 @@ function welcome_to_play() {
             $letters = secret_words_letters($our_secret_words);
             echo "\nThis is the letters from the three secret words (double letters are only stated once): ";
             echo "{$letters}";
-            $vic_3 = turn_to_play($our_secret_words); # il s'active aussi en tant que fonction (et retourne en plus le résultat qui sera stocké dans la variable)
+            $vic_3 = turn_to_play($our_secret_words); 
             array_push($total_score,$vic_3);
         }
     $round = $round + 1;
