@@ -11,8 +11,17 @@
 
 <body>
 
+<header>
+<h1>header<h1>
+</header>
 
 
+{% block content %}{% endblock%}
+
+<footer>
+<p>FOOTER</p>
+</footer>
+
+<script href="{{url_for('static', filename='js/script.js')}}"></script>
 </body>
-
 </html>
