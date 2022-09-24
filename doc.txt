@@ -1,0 +1,24 @@
+Variables can be modified by filters. Filters are separated from the variable by a pipe symbol (|) and may have optional arguments in parentheses. Multiple filters can be chained. The output of one filter is applied to the next.
+
+For example, {{ name|striptags|title }} will remove all HTML Tags from variable name and title-case the output (title(striptags(name))).
+
+Filters that accept arguments have parentheses around the arguments, just like a function call. For example: {{ listx|join(', ') }} will join a list with commas (str.join(', ', listx)).
+
+The List of Builtin Filters below describes all the builtin filters.
+
+
+Tests
+Beside filters, there are also so-called “tests” available. Tests can be used to test a variable against a common expression. To test a variable or expression, you add is plus the name of the test after the variable. For example, to find out if a variable is defined, you can do name is defined, which will then return true or false depending on whether name is defined in the current template context.
+
+Tests can accept arguments, too. If the test only takes one argument, you can leave out the parentheses. For example, the following two expressions do the same thing:
+
+{% if loop.index is divisibleby 3 %}
+{% if loop.index is divisibleby(3) %}
+The List of Builtin Tests below describes all the builtin tests.
+
+Comments:
+{# note: commented-out template because we no longer use this
+    {% for user in users %}
+        ...
+    {% endfor %}
+#}
