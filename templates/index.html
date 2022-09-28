@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Index Page</title>
+</head>
+
+<body>
+    {% if resp %}
+    {% if resp[-1]:%}
+    <pre>{{resp[-1].secret_1}}</pre>
+    <pre>{{resp[-1].secret_2}}</pre>
+    <pre>{{resp[-1].secret_3}}</pre>
+    {% else %}
+    <h3>Empty</h3>
+    {% endif %}
+
+    {% if resp[-1]:%}
+    {% if user_words[-1] and (user_words[-1].word == resp[-1].secret_1 or user_words[-1].word == resp[-1].secret_2 or
+    user_words[-1].word == resp[-1].secret_3) %}
+    <h2>You win with {{user_words[-1].word}}! Try to win again next turn.</h2>
+    {% elif user_words[-1] and (user_words[-1].word != resp[-1].secret_1 or user_words[-1].word != resp[-1].secret_2 or
+    user_words[-1].word !=
+    resp[-1].secret_3) %}
+    <h2>Try again as {{user_words[-1].word}} is not in my right hand</h2>
+    {% else %}
+    <h1>You guessed no word</h1>
+    {% endif %}
+    {% endif %}
+
+    {%else%}
+    <p>There is nothing in my hands for now, please play and I will fetch a thing</p>
+    {%endif%}
+
+    <h2>Try to guess what have in my left hand and give me your guesses in my right hand</h2>
+
+    <h3>Your guesses: </h3>
+    <a href="/add_data">CREATE A GAME</a>
+    <br>
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>word</th>
+            <th>#</th>
+        </thead>
+        {%if user_words %}
+        {% for data in user_words %}
+        <tbody>
+            <td>{{data.id}}</td>
+            <td>{{data.word}}</td>
+            <td><a href="/delete/{{data.id}}" type="button">Delete</a></td>
+        </tbody>
+        {%endfor%}
+        {%endif%}
+    </table>
+
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>words</th>
+            <th>delete</th>
+        </thead>
+        {%if resp %}
+        {% for row in resp %}
+        <tbody>
+            <td>{{row.id}}</td>
+            <td>{{" "+row.secret_1+" "+row.secret_2+" "+row.secret_3}}</td>
+            <td><a href="/delete_all/{{row.id}}" type="button">Delete</a></td>
+        </tbody>
+        {% endfor%}
+        {%endif%}
+    </table>
+    {% if user_words %}
+    <div>
+        <a href="/turn" type="button">Next turn</a>
+    </div>
+    {% endif %}
+</body>
+
+
+</html>

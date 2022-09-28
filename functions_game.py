@@ -1,6 +1,5 @@
 # Finished on 02/12/2021
 # Formation bachelor WEB 1ère année - groupe de : Amaury FRANSSEN , Farmata SIDIBE , Abdoulaye DIOP
-
 from random import sample
 from random import randint
 from random import randrange
@@ -257,4 +256,3 @@ def play_scrabble(user_name=input("Veillez rentrer votre nom : ")):
         return
 
 
-play_scrabble()

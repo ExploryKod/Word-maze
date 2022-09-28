@@ -22,3 +22,6 @@ Comments:
         ...
     {% endfor %}
 #}
+
+
+reviews = db.relationship('Review', backref='reviewer', lazy='dynamic', cascade = 'all, delete, delete-orphan')

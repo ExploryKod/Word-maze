@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Letters</title>
+</head>
+
+<body>
+    <h1>Word star:</h1>
+    <pre>{{words_star}}</pre>
+    {% if is_a_turn and is_a_turn == False %}
+    <ul>
+        <li>{{first}}</li>
+        <li>{{word_1}}</li>
+        <li>{{word_2}}</li>
+        <li>{{word_3}}</li>
+    </ul>
+    <h3>Guess your word from these letters: </h3>
+    <h2>{{ letters }}</h2>
+    {% endif %}
+    <form action="/add" method="POST">
+        <label>First Name</label>
+        <input type="text" name="word" placeholder="your word...">
+        <button type="submit">Guess</button>
+    </form>
+
+
+</body>
+
+</html>
