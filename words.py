@@ -1,6 +1,4 @@
 from random import sample
-from random import randint
-from random import randrange
 
 def chose_list(num):
   

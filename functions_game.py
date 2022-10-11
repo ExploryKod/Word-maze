@@ -105,7 +105,7 @@ def letter_blend(liste_2):
     for g in blend_letters:
             your_letters += g+str('    ')
      
-    return str('                    \n>>>-----------------------------------------------\n\n                    ')+your_letters+str('                    \n\n                    -----------------------------------------------<<<')   # 50
+    return str(your_letters)   # 50
 
 
 # Game function:
