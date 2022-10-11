@@ -70,6 +70,9 @@ class Scores(db.Model):
     # foreign key referring to the PK of Users (Many scores by user) - FK is on the many side
     scores_id = db.Column(db.String, db.ForeignKey("users.id"))
 
+with app.app_context():  # From SQLAlchemy 3.0 
+    db.create_all()
+
 # function to render index page
 @app.route('/')
 def index():
@@ -105,7 +108,6 @@ def add_data():
     words_star = Secrets.query.all()
 
     return render_template('play.html', letters=letters, secret_words=secret_words, word_1=secret_1,word_2=secret_2,word_3=secret_3,first=first, words_star=words_star, is_a_turn = is_a_turn, blend_words=blend_words)
-
 
 @app.route('/turn')
 def turns():
