@@ -141,3 +141,6 @@ Include output.css inside the main index.html template:
 Notice how the text-blue-600 class is now being applied using the configuration that we set up which means that you can start building user interfaces with Tailwind CSS
 
 https://flowbite.com/docs/getting-started/flask/
+
+
+npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css --watch

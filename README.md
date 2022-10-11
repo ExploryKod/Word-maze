@@ -13,6 +13,18 @@ You have one point by good answer.
 You win only if 3 words are found.
 
 ### Installation
+
+#### Using the flask application
+- git clone this repo
+- You need node.js, npm, python3, sqlite3
+- Create a virtual environment (ex: python3 -m venv venv).
+- Install dependencies using requirement.txt : pip -r requirement.txt
+- Install dependancies from package.json using : npm install
+- Using one terminal you start the flask interface (python -m app.py)
+- Using another terminal you start tailwind css : npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css --watch 
+- Check that you have an instance containing a game.db file in your directories
+
+#### Using the original versions (python or php)
 You need to import it on your favorit IDE and/or play from your terminal.
 This game can only be played using command line interface.<br/>
 You need to install locally php or python:<br/>
