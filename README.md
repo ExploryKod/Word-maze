@@ -18,7 +18,7 @@ You win only if 3 words are found.
 - git clone this repo
 - You need node.js, npm, python3, sqlite3
 - Create a virtual environment (ex: python3 -m venv venv).
-- Install dependencies using requirement.txt : pip -r install requirement.txt
+- Install dependencies using requirement.txt : pip install -r requirement.txt
 - Install dependancies from package.json using : npm install
 - Using one terminal you start the flask interface (python -m app.py)
 - Using another terminal you start tailwind css : npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css --watch 
