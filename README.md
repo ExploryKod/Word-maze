@@ -17,7 +17,7 @@ You win only if 3 words are found.
 #### Using the flask application
 - git clone this repo
 - You need node.js, npm, python3, sqlite3
-- Create a virtual environment (ex: python3 -m venv venv).
+- Create a virtual environment (ex: python3 -m venv venv) and activate it.
 - Install dependencies using requirement.txt : pip install -r requirement.txt
 - Install dependancies from package.json using : npm install
 - Using one terminal you start the flask interface (python -m app.py)
