@@ -1,3 +1,4 @@
+import sqlite3 
 from random import randint
 from flask import Flask, request, redirect
 from flask.templating import render_template
@@ -10,6 +11,10 @@ from letters import letter_blend
 
 app = Flask(__name__)
 app.debug = True
+
+conn = sqlite3.connect('game.db') 
+# Créer un cursor 
+cur = conn.cursor()
 
 # adding configuration for using a sqlite database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///game.db'
