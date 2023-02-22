@@ -13,9 +13,10 @@ You have one point by good answer.
 You win only if 3 words are found.
 
 ### Installation (only for development purpose):
-🔥See it on the web:<br>
+🔥See it on the web:
   - Through Docker
-  - Through your own tools (only isolate through an env)<br>
+  - Through your own tools (only isolate through an env)
+
 🔥See it only in a command line interface through simple python file and a terminal (original version)
 
 #### 🔥Using Docker (branche: feature/config-docker)
