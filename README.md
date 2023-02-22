@@ -49,6 +49,7 @@ Nota: To have a better access to sqlite tables: you can install dbbrowser as it 
 - Create a virtual environment à la racine du projet.
 - You can use venv already in default python: <code>python3 -m venv venv</code> ou sur windows: <code>python -m venv venv </code>
 - and activate it (ex: in the root project folder type the path to the good activate file (windows) or type source + the good activate file (mac)). 
+- Be careful: don't type active with its extension
 - Install dependencies using requirement.txt : <code>pip install -r requirement.txt</code>
 - Install dependancies from package.json using : <code>npm install</code>
 
