@@ -12,15 +12,20 @@ You need to guess 3 words that the program choose among a list of secret words.
 You have one point by good answer.
 You win only if 3 words are found.
 
-### Installation (only for development purpose)
+### Installation (only for development purpose):
+🔥See it on the web:
+- Through Docker
+- Through your own tools (only isolate through an env)
+🔥See it only in a command line interface (original version):
+- Through simple python file and a terminal
 
-#### Using Docker (branche: feature/config-docker)
+🔥#### Using Docker (branche: feature/config-docker)
 - Install Docker 
 - Configure docker properly (see docs)
 - Go to the application root folder and type: <code>docker compose up -d --build</code>
 - Go to your browser and access http://localhost:5000/
 
-#### Using the flask application (branche: feature/config-traditionnal)
+🔥#### Using the flask application (branche: feature/config-traditionnal)
 
 ##### install these necessary tools on your computer (or isolate them through a virtual env):
 - node.js (and npm), 
@@ -65,7 +70,7 @@ Nota: To have a better access to sqlite tables: you can install dbbrowser as it 
 => It will run in its watch mode 
 - Check that you have an instance containing a game.db file in your directories.
 
-#### Using the original versions (python or php)
+🔥#### Using the original versions (python or php)
 You need to import it on your favorit IDE and/or play from your terminal.
 This game can only be played using command line interface.<br/>
 You need to install locally php or python:<br/>
