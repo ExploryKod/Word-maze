@@ -16,7 +16,7 @@ You win only if 3 words are found.
 
 #### Using the flask application
 
-##### install these necessary tool on your computer (or isolate them):
+##### install these necessary tools on your computer (or isolate them through a virtual env):
 - node.js (and npm), 
 - python3, 
 - sqlite3
@@ -44,7 +44,7 @@ Sqlite3 is installed
 
 Nota: To have a better access to sqlite tables: you can install dbbrowser as it is easier to see tables through this tool.
 
-##### Start the app:
+##### Install the app and its dependencies:
 - git clone this repo
 - Create a virtual environment à la racine du projet.
 - You can use venv already in default python: <code>python3 -m venv venv</code> ou sur windows: <code>python -m venv venv </code>
