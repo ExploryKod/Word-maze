@@ -15,7 +15,7 @@ You win only if 3 words are found.
 ### Installation (only for development purpose):
 🔥See it on the web:
 - Through Docker
-- Through your own tools (only isolate through an env)
+- Through your own tools (only isolate through an env)<br>
 🔥See it only in a command line interface (original version):
 - Through simple python file and a terminal
 
