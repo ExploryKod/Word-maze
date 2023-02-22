@@ -2,8 +2,8 @@
 FROM node:16
 WORKDIR /python-docker
 
+RUN deactivate
 RUN npm install --update npm
 COPY package.json package.json
 RUN npm install
 COPY . .
-CMD [ "nopm", "install"]
