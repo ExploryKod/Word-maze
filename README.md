@@ -5,14 +5,14 @@
 
 # <p align="center"> Word Maze </p>
 
-## A game to play with words
+## 🔥🔥🔥A game to play with words 🔥🔥🔥
 
-### Rules of the game
+### 🔥🔥🔥Rules of the game
 You need to guess 3 words that the program choose among a list of secret words. 
 You have one point by good answer.
 You win only if 3 words are found.
 
-### Installation (only for development purpose):
+### 🔥🔥🔥Installation (only for development purpose):
 🔥See it on the web:
   - Through Docker
   - Through your own tools (only isolate through an env)
@@ -80,7 +80,7 @@ python : https://www.python.org/downloads/ <br/>
 With python you can also use Colab through jupyter Notebook : https://colab.research.google.com/.
 Copy the code in a Colab notebook.
 
-### My learning goals
+### 🔥🔥🔥My learning goals
 
 I aim at coding with languages like python and PHP. 
 This is my first project using python and among my first PHP projects. 
@@ -88,7 +88,7 @@ This is my first project using python and among my first PHP projects.
 I want to compare both languages by coding the same game in these languages. 
 As a consequence I'll have a better understanding of these languages by seeing differences.
 
-### The project has two versions:
+### 🔥🔥🔥The project has two versions:
 #### 1. French version in python : a collective project.
 ##### Authors: 
 - [Amaury Franssen](https://github.com/ExploryKod)
