@@ -14,7 +14,7 @@ You win only if 3 words are found.
 
 ### Installation (only for development purpose)
 
-#### Using Docker (branche: feature/config-traditionnal)
+#### Using Docker (branche: feature/config-docker)
 - Install Docker 
 - Configure docker properly (see docs)
 - Go to the application root folder and type: <code>docker compose up -d --build</code>
