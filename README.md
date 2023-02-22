@@ -5,7 +5,7 @@
 
 # <p align="center"> Word Maze </p>
 
-## 🔥🔥🔥A game to play with words 🔥🔥🔥
+## <p align="center">🔥🔥🔥A game to play with words 🔥🔥🔥</p>
 
 ### 🔥🔥🔥Rules of the game
 You need to guess 3 words that the program choose among a list of secret words. 
