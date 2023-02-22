@@ -3,7 +3,7 @@
   <img width="50%" src="cover.png" />
 </p>
 
-# <p align="center"> Word Maze </p>
+# <p align="center"> <a href='http://explorypython.pythonanywhere.com/' alt='site web'>Word Maze </a> </p>
 
 ## <p align="center">🔥🔥🔥A game to play with words 🔥🔥🔥</p>
 
