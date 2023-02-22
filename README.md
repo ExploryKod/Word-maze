@@ -16,8 +16,7 @@ You win only if 3 words are found.
 🔥See it on the web:<br>
   - Through Docker
   - Through your own tools (only isolate through an env)<br>
-🔥See it only in a command line interface (original version):<br>
-  - Through simple python file and a terminal
+🔥See it only in a command line interface through simple python file and a terminal (original version)
 
 🔥#### Using Docker (branche: feature/config-docker)
 - Install Docker 
