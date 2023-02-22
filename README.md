@@ -15,11 +15,45 @@ You win only if 3 words are found.
 ### Installation
 
 #### Using the flask application
+
+##### install these necessary tool on your computer (or isolate them):
+- node.js (and npm), 
+- python3, 
+- sqlite3
+
+Install node.js by installing it through official website: https://nodejs.org/en/
+Install python3 by installing it through official website: https://www.python.org/downloads/
+Npm is already installed through Node.js, check if you have the last version and if not just do the second command: 
+```
+npm --version 
+npm install npm -g
+```
+Everything is normally automatically added to your path. Check it if the first commande above don't give a version but through an error.
+
+sqlite3 have to be manually added to your path (windows):
+- Go the sqlite3 download page: https://sqlite.org/download.html
+- Download a bundler where you have a CLI 
+- Add a folder named sqlite3 to C: C:\sqlite3
+- Copy sqlite3.exe file from the downloaded folder and past it in the new folder sqlite3
+- Past the path C:\sqlite3
+- open your system properties tool > go to environnement variables > choose path among system variables > click on edit
+- add C:\sqlite3 to the system variables
+- check in cmder if you succeed in adding sqlite3, type: 
+```
+sqlite3 --version
+```
+- You succeed if you have a version followed by oher stuffs. 
+Sqlite3 is installed
+
+Nota: To have a better access to sqlite tables: you can install dbbrowser as it is easier to see tables through this tool.
+
+##### Start the app:
 - git clone this repo
-- You need node.js, npm, python3, sqlite3
 - Create a virtual environment (ex: python3 -m venv venv) and activate it.
 - Install dependencies using requirement.txt : pip install -r requirement.txt
 - Install dependancies from package.json using : npm install
+
+##### Start the app:
 - Using one terminal you start the flask interface (python -m app.py)
 - Using another terminal you start tailwind css : npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css --watch 
 - Check that you have an instance containing a game.db file in your directories
