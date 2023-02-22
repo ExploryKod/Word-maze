@@ -7,7 +7,7 @@
 
 ## <p align="center">🔥🔥🔥A game to play with words 🔥🔥🔥</p>
 
-## 👀 Pour aller sur le site <br> cliquez <a href='http://explorypython.pythonanywhere.com/' alt='site en ligne'>ici</a><br>
+### 👀 Pour aller jeter un oeil au site, cliquez <a href='http://explorypython.pythonanywhere.com/' alt='site en ligne'>ici</a><br>
 
 ### 🔥🔥🔥Rules of the game
 You need to guess 3 words that the program choose among a list of secret words. 
