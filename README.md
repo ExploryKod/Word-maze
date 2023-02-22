@@ -38,10 +38,7 @@ sqlite3 have to be manually added to your path (windows):
 - Past the path C:\sqlite3
 - open your system properties tool > go to environnement variables > choose path among system variables > click on edit
 - add C:\sqlite3 to the system variables
-- check in cmder if you succeed in adding sqlite3, type: 
-```
-sqlite3 --version
-```
+- check in cmder if you succeed in adding sqlite3, type: <code>sqlite3 --version </code>
 - You succeed if you have a version followed by oher stuffs. 
 Sqlite3 is installed
 
@@ -52,13 +49,14 @@ Nota: To have a better access to sqlite tables: you can install dbbrowser as it 
 - Create a virtual environment à la racine du projet.
 - You can use venv already in default python: <code>python3 -m venv venv</code> ou sur windows: <code>python -m venv venv </code>
 - and activate it (ex: in the root project folder type the path to the good activate file (windows) or type source + the good activate file (mac)). 
-- Install dependencies using requirement.txt : pip install -r requirement.txt
-- Install dependancies from package.json using : npm install
+- Install dependencies using requirement.txt : <code>pip install -r requirement.txt</code>
+- Install dependancies from package.json using : <code>npm install</code>
 
 ##### Start the app:
-- Using one terminal you start the flask interface (python -m app.py)
-- Using another terminal you start tailwind css : npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css --watch 
-- Check that you have an instance containing a game.db file in your directories
+- Using one terminal you start the flask interface : <code>python -m app.py</code> (be careful: you need to add extension or note depending your OS).
+- Using another terminal you start tailwind css : <code>npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css --watch </code>
+=> It will run in its watch mode 
+- Check that you have an instance containing a game.db file in your directories.
 
 #### Using the original versions (python or php)
 You need to import it on your favorit IDE and/or play from your terminal.
