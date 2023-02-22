@@ -1,10 +1,10 @@
+import os
 from random import randint
 from flask import Flask, request, redirect
 from flask.templating import render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import delete
 # Import for Migrations
-
 from words import chose_list, list_of_words
 from letters import letter_blend
 
@@ -12,7 +12,9 @@ app = Flask(__name__)
 app.debug = True
 
 # adding configuration for using a sqlite database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///game.db'
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] =\
+        'sqlite:///' + os.path.join(basedir, 'game.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Creating an SQLAlchemy instance
 db = SQLAlchemy(app)
