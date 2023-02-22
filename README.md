@@ -12,9 +12,15 @@ You need to guess 3 words that the program choose among a list of secret words.
 You have one point by good answer.
 You win only if 3 words are found.
 
-### Installation
+### Installation (only for development purpose)
 
-#### Using the flask application
+#### Using Docker (branche: feature/config-traditionnal)
+- Install Docker 
+- Configure docker properly (see docs)
+- Go to the application root folder and type: <code>docker compose up -d --build</code>
+- Go to your browser and access http://localhost:5000/
+
+#### Using the flask application (branche: feature/config-traditionnal)
 
 ##### install these necessary tools on your computer (or isolate them through a virtual env):
 - node.js (and npm), 
