@@ -85,12 +85,22 @@ def index():
     points = Scores.query.all()
     logout = False
     if not session.get('logged_in'):
+        return render_template('index.html', user_words=user_words, resp=resp, player=player, points=points)
+    else:
+        return render_template('index.html', user_words=user_words, resp=resp, player=player, points=points)
+
+@app.route('/login', methods=['POST', 'GET'])
+def do_admin_login():
+    logout = True
+    if not session.get('logged_in'):
         return render_template('login.html', logout=logout)
     else:
-        return render_template('index.html', user_words=user_words, resp=resp, player=player, points=points, logout=True)
+        logout = False
+        return redirect('index.html')
 
-@app.route('/login', methods=['POST'])
-def do_admin_login():
+
+@app.route('/login/checked', methods=['POST', 'GET'])
+def check_login():
     if request.form['password'] == 'password' and request.form['username'] == 'admin':
         session['logged_in'] = True
         return render_template('play.html', logout=logout)
