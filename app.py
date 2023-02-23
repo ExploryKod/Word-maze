@@ -1,6 +1,6 @@
 import os
 from random import randint
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, abort, session, flash
 from flask.templating import render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import delete
@@ -83,7 +83,25 @@ def index():
     resp = Secrets.query.all()
     player = Users.query.all() 
     points = Scores.query.all()
-    return render_template('index.html', user_words=user_words, resp=resp, player=player, points=points)
+    logout = False
+    if not session.get('logged_in'):
+        return render_template('login.html', logout=logout)
+    else:
+        return render_template('index.html', user_words=user_words, resp=resp, player=player, points=points, logout=True)
+
+@app.route('/login', methods=['POST'])
+def do_admin_login():
+    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+        session['logged_in'] = True
+        return render_template('play.html', logout=logout)
+    else:
+        flash('wrong password!')
+        return render_template('login.html', logout=logout)
+
+@app.route("/logout")
+def logout():
+    session['logged_in'] = False
+    return index()
 
 @app.route('/add_data')
 def add_data():
@@ -165,6 +183,7 @@ def delete_all(id):
     return redirect('/')
 
 if __name__ == '__main__':
-	app.run()
+    app.secret_key = os.urandom(12)
+    app.run(debug=True,host='0.0.0.0', port=4000)
 
 

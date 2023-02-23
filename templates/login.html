@@ -1,0 +1,15 @@
+{% extends "layouts/default.html" %}
+{% block content %}
+{%  if session['logged_in']  %}
+
+<p>Vous êtes déjà connecté.</p>
+
+{%  else  %}
+<form action="/login" method="POST">
+    <input type="username" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit" value="Log in">
+</form>
+{% endif %}
+{% endblock %}
+
