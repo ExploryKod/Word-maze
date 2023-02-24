@@ -1,15 +1,20 @@
 import os
 from random import randint
-from flask import Flask, request, redirect, abort, session, flash
+from flask import Flask, request, redirect, session, url_for, flash, timedelta, jsonify
+from werkzeug import generate_password_hash,  check_password_hash
 from flask.templating import render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import delete
 # Import for Migrations
+from authentication_check import *
+from authentication_tables import User
 from words import chose_list, list_of_words
 from letters import letter_blend
 
 app = Flask(__name__)
 app.debug = True
+app.secret_key ="13883755267d736867381d1a1c2533855759fd8bff429b5a504378194f9df049"
+app.permanent_session_lifetime = timedelta(minutes=5)
 
 # adding configuration for using a sqlite database
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -83,35 +88,53 @@ def index():
     resp = Secrets.query.all()
     player = Users.query.all() 
     points = Scores.query.all()
-    logout = False
-    if not session.get('logged_in'):
-        return render_template('index.html', user_words=user_words, resp=resp, player=player, points=points)
+    return render_template('index.html', user_words=user_words, resp=resp, player=player, points=points)
+
+
+@app.route('/register', methods=["GET", "POST"])
+def register():
+    username = request.args.get('username')
+    # email = request.args.get('email')
+    password = request.args.get('password')
+    password_hash = generate_password_hash(password)
+    user_data = User(username=username, password=password_hash)
+    db.session.add(user_data)
+    db.session.commit()
+    session['username'] = request.form['username']
+    flash('subcription added!')
+    return redirect(url_for('index'))
+
+@app.route('/login', methods=['GET'])
+def login():
+    if 'username' not in session:
+        return render_template('login.html')
     else:
-        return render_template('index.html', user_words=user_words, resp=resp, player=player, points=points)
-
-@app.route('/login', methods=['POST', 'GET'])
-def do_admin_login():
-    logout = True
-    if not session.get('logged_in'):
-        return render_template('login.html', logout=logout)
-    else:
-        logout = False
-        return redirect('index.html')
-
-
-@app.route('/login/checked', methods=['POST', 'GET'])
+        return redirect(url_for('regiser'))
+@app.route('/login/checked', methods=['POST'])
 def check_login():
-    if request.form['password'] == 'password' and request.form['username'] == 'admin':
-        session['logged_in'] = True
-        return render_template('play.html', logout=logout)
+    if request.method == 'POST':
+        session['username'] = request.form['username']
+        POST_USERNAME = str(request.form['username'])
+        POST_PASSWORD = str(request.form['password'])
+    else:
+        return redirect(url_for('index'))
+    
+    Session = sessionmaker(bind=engine)
+    s = Session()
+    query = s.query(User).filter(User.username.in_([POST_USERNAME]), User.password.in_([POST_PASSWORD]))
+    result = query.first()
+    if result:
+        flash('good password!')
+        return redirect(url_for('add_data'))
     else:
         flash('wrong password!')
-        return render_template('login.html', logout=logout)
+        return redirect(url_for('login'))
 
-@app.route("/logout")
+@app.route('/logout')
 def logout():
-    session['logged_in'] = False
-    return index()
+    # remove the username from the session if it's there
+    session.pop('username', None)
+    return redirect(url_for('index'))
 
 @app.route('/add_data')
 def add_data():
@@ -136,7 +159,7 @@ def add_data():
         db.session.commit()
             
     words_star = Secrets.query.all()
-
+    
     return render_template('play.html', letters=letters, secret_words=secret_words, word_1=secret_1,word_2=secret_2,word_3=secret_3,first=first, words_star=words_star, is_a_turn = is_a_turn, blend_words=blend_words)
 
 @app.route('/turn')
@@ -170,11 +193,11 @@ def profile():
         db.session.add(you)
         db.session.add(points)
         db.session.commit()
-        return redirect('/')
-    elif word != words_star:
+        return redirect(url_for('/'))
+    elif word != words_start:
         return render_template('index.html', words_star=words_star, word=word)
     else:
-	    return redirect('/')
+	    return redirect(url_for('/'))
 
 @app.route('/delete/<int:id>')
 def erase(id):
