@@ -1,7 +1,8 @@
 import os
 from random import randint
-from flask import Flask, request, redirect, session, url_for, flash, timedelta, jsonify
-from werkzeug import generate_password_hash,  check_password_hash
+from datetime import timedelta
+from flask import Flask, request, redirect, session, url_for, flash
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask.templating import render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import delete
@@ -90,30 +91,32 @@ def index():
     points = Scores.query.all()
     return render_template('index.html', user_words=user_words, resp=resp, player=player, points=points)
 
-
-@app.route('/register', methods=["GET", "POST"])
+@app.route('/register', methods=["GET"])
 def register():
-    username = request.args.get('username')
-    # email = request.args.get('email')
-    password = request.args.get('password')
-    password_hash = generate_password_hash(password)
-    user_data = User(username=username, password=password_hash)
-    db.session.add(user_data)
-    db.session.commit()
-    session['username'] = request.form['username']
-    flash('subcription added!')
+    return render_template('sign.html')
+
+@app.route('/register/in', methods=["POST"])
+def register_in():
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    username = request.form['username']
+    password = request.form['password']
+    # password = generate_password_hash(password)
+    user = User(username,password)
+    session.add(user)
+    session.commit()
     return redirect(url_for('index'))
+
 
 @app.route('/login', methods=['GET'])
 def login():
-    if 'username' not in session:
-        return render_template('login.html')
-    else:
-        return redirect(url_for('regiser'))
+    return render_template('login.html')
+
 @app.route('/login/checked', methods=['POST'])
 def check_login():
     if request.method == 'POST':
-        session['username'] = request.form['username']
+        # session['username'] = request.form['username']
         POST_USERNAME = str(request.form['username'])
         POST_PASSWORD = str(request.form['password'])
     else:
