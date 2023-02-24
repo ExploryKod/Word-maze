@@ -136,17 +136,21 @@
         {% if user_words[-1] and (user_words[-1].word == resp[-1].secret_1 or user_words[-1].word == resp[-1].secret_2
         or
         user_words[-1].word == resp[-1].secret_3) %}
-
-        <h2>Bravo {{player[-1].pseudo}}, you win with {{user_words[-1].word}} and gain {{points[-1].score}} points. Try
-            to
-            win again next
-            turn.</h2>
+        <h2>
+        {% if fl_session['username']%}
+        <span>Bravo {{fl_session['username']}},</span>
+        {% endif %}
+        with your attempt {{player[-1].pseudo}}, you win with {{user_words[-1].word}} and gain {{points[-1].score}} points. Try to win again next turn.</h2>
 
         {% elif user_words[-1] and (user_words[-1].word != resp[-1].secret_1 or user_words[-1].word != resp[-1].secret_2
         or
         user_words[-1].word !=
         resp[-1].secret_3) %}
-        <h2> Be brave {{player[-1].pseudo}}, try again as {{user_words[-1].word}} is not in my right hand</h2>
+        <h2> Be brave
+            {% if fl_session['username']%}
+            {{fl_session['username']}}
+            {% endif %}
+            , try again as {{user_words[-1].word}} is not in my right hand</h2>
         {% else %}
         <h1>You guessed no word</h1>
         {% endif %}

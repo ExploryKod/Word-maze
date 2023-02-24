@@ -1,14 +1,19 @@
 {% extends "layouts/default.html" %}
 
 {% block content %}
-<h1>Word star:</h1>
-<pre>{{words_star}}</pre>
-<pre>{{query}}</pre>
+
+
 <main class="p-6 mx-20 bg-white rounded-xl flex items-center justify-center space-x-4">
 
     <section>
+        {% if(fl_session['username']) %}
+        <div class="basis-3/6 mx-20 flex flex-col items-center justify-center my-5 py-5">
+            <h1 class="text-3xl font-bold"> Hi {{fl_session['username']}} ! </h1>
+        </div>
+        {% endif %}
         <section class="basis-3/6 mx-20 bg-white rounded-xl flex gap-4 items-center justify-center space-x-4">
             <article class="self-start">
+                <pre>{{words_star}}</pre>
                 <div class="w-full bg-white rounded-lg border shadow-md dark:bg-gray-800 dark:border-gray-700">
                     <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 bg-gray-50 rounded-t-lg border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800"
                         id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
@@ -128,19 +133,18 @@
                     <form class="space-y-6" action="/add" method="POST">
                         <h5 class="text-xl font-medium text-gray-900 dark:text-white">Try to find a secret word:</h5>
                         <div>
-                            <label for="email"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Give a name to
-                                your attempt:
+                            <label for="attempt"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                             </label>
-                            <input type="text" name="pseudo" id="email"
+                            <input type="text" name="pseudo" id="attempt"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                placeholder="your attempt" required="">
+                                placeholder="your attempt's name" required="">
                         </div>
                         <div>
                             <label for="password"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Write your
                                 word:</label>
-                            <input type="text" name="word" id="password" placeholder="your word..."
+                            <input type="text" name="word" id="password" placeholder="your word"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 required="">
                         </div>

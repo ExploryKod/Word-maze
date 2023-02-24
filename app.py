@@ -6,6 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask.templating import render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import delete
+fl_session = session
 # Import for Migrations
 from authentication_check import *
 from authentication_tables import User
@@ -89,11 +90,12 @@ def index():
     resp = Secrets.query.all()
     player = Users.query.all() 
     points = Scores.query.all()
-    return render_template('index.html', user_words=user_words, resp=resp, player=player, points=points)
+    return render_template('index.html', user_words=user_words, resp=resp, player=player, points=points, fl_session=fl_session)
 
 @app.route('/register', methods=["GET"])
 def register():
-    return render_template('sign.html')
+    fl_session=fl_session['username']
+    return render_template('sign.html', fl_session=fl_session)
 
 @app.route('/register/in', methods=["POST"])
 def register_in():
@@ -111,12 +113,11 @@ def register_in():
 
 @app.route('/login', methods=['GET'])
 def login():
-    return render_template('login.html')
+    return render_template('login.html', fl_session=fl_session)
 
 @app.route('/login/checked', methods=['POST'])
 def check_login():
     if request.method == 'POST':
-        # session['username'] = request.form['username']
         POST_USERNAME = str(request.form['username'])
         POST_PASSWORD = str(request.form['password'])
     else:
@@ -128,6 +129,7 @@ def check_login():
     result = query.first()
     if result:
         flash('good password!')
+        fl_session['username'] = request.form['username']
         return redirect(url_for('add_data'))
     else:
         flash('wrong password!')
@@ -136,7 +138,7 @@ def check_login():
 @app.route('/logout')
 def logout():
     # remove the username from the session if it's there
-    session.pop('username', None)
+    fl_session.pop('username', None)
     return redirect(url_for('index'))
 
 @app.route('/add_data')
@@ -163,19 +165,18 @@ def add_data():
             
     words_star = Secrets.query.all()
     
-    return render_template('play.html', letters=letters, secret_words=secret_words, word_1=secret_1,word_2=secret_2,word_3=secret_3,first=first, words_star=words_star, is_a_turn = is_a_turn, blend_words=blend_words)
+    return render_template('play.html', fl_session=fl_session, letters=letters, secret_words=secret_words, word_1=secret_1,word_2=secret_2,word_3=secret_3,first=first, words_star=words_star, is_a_turn = is_a_turn, blend_words=blend_words)
 
 @app.route('/turn')
 def turns():
     words_star = Secrets.query.all()
     blend_words = Letters.query.all()
     is_a_turn = True
-    return render_template('play.html', words_star=words_star, is_a_turn = is_a_turn, blend_words=blend_words)
+    return render_template('play.html', words_star=words_star, is_a_turn = is_a_turn, blend_words=blend_words, fl_session=fl_session)
 
 # function to add profiles
 @app.route('/add', methods=["POST"])
 def profile():
-	
     word = request.form.get("word")
     pseudo = request.form.get("pseudo")
     words_star = Secrets.query.all()
@@ -196,11 +197,11 @@ def profile():
         db.session.add(you)
         db.session.add(points)
         db.session.commit()
-        return redirect(url_for('/'))
+        return redirect(url_for('index'))
     elif word != words_start:
-        return render_template('index.html', words_star=words_star, word=word)
+        return render_template('index.html', words_star=words_star, word=word, fl_session=fl_session)
     else:
-	    return redirect(url_for('/'))
+	    return redirect(url_for('index'))
 
 @app.route('/delete/<int:id>')
 def erase(id):

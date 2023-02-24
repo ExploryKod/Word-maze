@@ -1,10 +1,10 @@
 {% extends "layouts/default.html" %}
 {% block content %}
-<!-- {%  if session['logged_in']  %}
+{%  if fl_session['username']  %}
 
 <p>Vous êtes déjà connecté.</p>
 
-{%  else  %} -->
+{%  else  %}
 
 <section class="mx-5 my-5 w-full h-[100vh] flex flex-col justify-center align-center">
     <form action="/login/checked" class="w-1/2 h-1/2 mx-auto my-5" method="POST">
