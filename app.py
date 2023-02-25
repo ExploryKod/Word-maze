@@ -8,10 +8,11 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import delete
 fl_session = session
 # Import for Migrations
-from authentication_check import *
-from authentication_tables import User
+from model.authentication_check import *
+from model.authentication_tables import User
 from words import chose_list, list_of_words
 from letters import letter_blend
+from game_tables import *
 
 app = Flask(__name__)
 app.debug = True
