@@ -10,15 +10,14 @@ fl_session = session
 # Import for Migrations
 from model.authentication_check import *
 from model.authentication_tables import User
-from words import chose_list, list_of_words
-from letters import letter_blend
-from game_tables import *
+from controllers.words import chose_list, list_of_words
+from controllers.letters import letter_blend
+from model.game_tables import *
 
 app = Flask(__name__)
 app.debug = True
 app.secret_key ="13883755267d736867381d1a1c2533855759fd8bff429b5a504378194f9df049"
-app.permanent_session_lifetime = timedelta(minutes=60)
-
+app.permanent_session_lifetime = timedelta(minutes=5)
 # adding configuration for using a sqlite database
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] =\
@@ -27,63 +26,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Creating an SQLAlchemy instance
 db = SQLAlchemy(app)
 
-# Models
-# May be a useless class 
-class Letters(db.Model):
-        # Id : Field which stores unique id for every row in
-        # database table
-        id = db.Column(db.Integer, primary_key=True)
-        round_1 = db.Column(db.String(50), unique=False, nullable=True)
-        round_2 = db.Column(db.String(50), unique=False, nullable=True)
-        round_3 = db.Column(db.String(50), unique=False, nullable=True)
-        secrets_id = db.relationship('Secrets', backref='letters', lazy='dynamic')
-       
-        def __repr__(self):
-            return f"3 secrets words : {self.secret_1} {self.secret_2} {self.secret_3}"
-
-class Users(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    pseudo = db.Column(db.String(50), unique=False, nullable=True)
-    guess = db.Column(db.String(150), unique=False, nullable=True)
-    # Many answers and many scores for one user
-    user_scores = db.relationship('Scores', backref='users', lazy='dynamic', cascade = "all, delete, delete-orphan")
-    user_answers = db.relationship('Guess', backref='users', lazy='dynamic', cascade = "all, delete, delete-orphan")
-
-class Secrets(db.Model):
-        # Id : Field which stores unique id for every row in
-        # database table
-        id = db.Column(db.Integer, primary_key=True)
-        secret_1 = db.Column(db.String(100), unique=False, nullable=False)
-        secret_2 = db.Column(db.String(100), unique=False, nullable=False)
-        secret_3 = db.Column(db.String(100), unique=False, nullable=False)
-        # foreign key referring to the PK of a series of letters from the 3 words above
-        letters_id = db.Column(db.Integer, db.ForeignKey('letters.id'))
-        
-        def __repr__(self):
-            return f"Secrets : {self.secret_1} {self.secret_2} {self.secret_3}"
-
-class Guess(db.Model):
-    # Id : Field which stores unique id for every row in
-    # database table
-    id = db.Column(db.Integer, primary_key=True)
-    word = db.Column(db.String(150), unique=False, nullable=False)
-    # foreign key referring to the PK of Users (Many answers by user)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-
-    def __repr__(self):
-        return f"Answer : {self.word}"
-
-class Scores(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    score = db.Column(db.Integer, unique=False, nullable=True)
-    score_object = db.Column(db.String(150), unique=False, nullable=True)
-    # foreign key referring to the PK of Users (Many scores by user) - FK is on the many side
-    scores_id = db.Column(db.String, db.ForeignKey("users.id"))
-
 with app.app_context():  # From SQLAlchemy 3.0 
     db.create_all()
 
-# function to render index page
+# function to render index page (home)
 @app.route('/')
 def index():
 	# Query all data and then pass it to the template
@@ -95,6 +41,7 @@ def index():
 
 @app.route('/register', methods=["GET"])
 def register():
+    fl_session=fl_session['username']
     return render_template('sign.html', fl_session=fl_session)
 
 @app.route('/register/in', methods=["POST"])
