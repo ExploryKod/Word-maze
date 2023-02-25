@@ -16,7 +16,7 @@ from letters import letter_blend
 app = Flask(__name__)
 app.debug = True
 app.secret_key ="13883755267d736867381d1a1c2533855759fd8bff429b5a504378194f9df049"
-app.permanent_session_lifetime = timedelta(minutes=5)
+app.permanent_session_lifetime = timedelta(minutes=60)
 
 # adding configuration for using a sqlite database
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -94,7 +94,6 @@ def index():
 
 @app.route('/register', methods=["GET"])
 def register():
-    fl_session=fl_session['username']
     return render_template('sign.html', fl_session=fl_session)
 
 @app.route('/register/in', methods=["POST"])
