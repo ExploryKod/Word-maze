@@ -1,3 +1,5 @@
+from app.extensions import db
+
 class Letters(db.Model):
         # Id : Field which stores unique id for every row in
         # database table
