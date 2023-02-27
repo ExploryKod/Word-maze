@@ -1,6 +1,7 @@
 {% extends "layouts/default.html" %}
 {% block content %}
 <main>
+    
     <section class="p-6 mx-20 bg-white rounded-xl flex items-center justify-center">
         <section class="bg-white dark:bg-gray-900">
             <div class="grid py-8 px-4 mx-auto max-w-screen-xl lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
@@ -213,33 +214,29 @@
 
     </section>
     <section class="p-6 mx-auto bg-white rounded-xl flex items-center justify-center">
-        {% if resp[-1]:%}
-        {% if user_words[-1] and (user_words[-1].word == resp[-1].secret_1 or user_words[-1].word == resp[-1].secret_2
-        or
-        user_words[-1].word == resp[-1].secret_3) %}
-        <h2>
-        {% if fl_session['username']%}
-        <span>Bravo {{fl_session['username']}},</span>
-        {% endif %}
-        with your attempt {{player[-1].pseudo}}, you win with {{user_words[-1].word}} and gain {{points[-1].score}} points. Try to win again next turn.</h2>
-
-        {% elif user_words[-1] and (user_words[-1].word != resp[-1].secret_1 or user_words[-1].word != resp[-1].secret_2
-        or
-        user_words[-1].word !=
-        resp[-1].secret_3) %}
-        <h2> Be brave
-            {% if fl_session['username']%}
-            {{fl_session['username']}}
+            {% if resp[-1]:%}
+            {% if user_words[-1] and (user_words[-1].word == resp[-1].secret_1 or user_words[-1].word == resp[-1].secret_2
+            or
+            user_words[-1].word == resp[-1].secret_3) %}
+            <h2>
+         
+            <span>Bravo,</span>
+           
+            with your attempt {{player[-1].pseudo}}, you win with {{user_words[-1].word}} and gain {{points[-1].score}} points. Try to win again next turn.</h2>
+    
+            {% elif user_words[-1] and (user_words[-1].word != resp[-1].secret_1 or user_words[-1].word != resp[-1].secret_2
+            or
+            user_words[-1].word !=
+            resp[-1].secret_3) %}
+            <h2> Be brave, try again as {{user_words[-1].word}} is not in my right hand</h2>
+            {% else %}
+            <h1>You guessed no word</h1>
             {% endif %}
-            , try again as {{user_words[-1].word}} is not in my right hand</h2>
-        {% else %}
-        <h1>You guessed no word</h1>
-        {% endif %}
-        {% endif %}
-
-        {%else%}
-        <p>There is nothing in my hands for now, please play and I will fetch a thing</p>
-        {%endif%}
+            {% endif %}
+    
+            {%else%}
+            <p>There is nothing in my hands for now, please play and I will fetch a thing</p>
+            {%endif%}
     </section>
 
 
@@ -294,7 +291,6 @@
         </div>
     </section>
     {%endif%}
-
 
 
 </main>

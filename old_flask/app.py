@@ -1,4 +1,3 @@
-import os
 from random import randint
 from datetime import timedelta
 from flask import Flask, request, redirect, session, url_for, flash
@@ -16,16 +15,6 @@ from model.game_tables import *
 
 app = Flask(__name__)
 app.debug = True
-app.secret_key ="13883755267d736867381d1a1c2533855759fd8bff429b5a504378194f9df049"
-app.permanent_session_lifetime = timedelta(minutes=60)
-
-# adding configuration for using a sqlite database
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] =\
-        'sqlite:///' + os.path.join(basedir, 'game.db')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# Creating an SQLAlchemy instance
-db = SQLAlchemy(app)
 
 with app.app_context():  # From SQLAlchemy 3.0 
     db.create_all()
