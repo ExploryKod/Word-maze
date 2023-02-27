@@ -1,5 +1,6 @@
 from flask import render_template, redirect, url_for, session
 from app.auth import bp
+from werkzeug.security import generate_password_hash, check_password_hash
 from app.models.authentication_check import *
 from app.models.authentication_tables import User
 
