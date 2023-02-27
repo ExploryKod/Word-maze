@@ -15,24 +15,26 @@ You have one point by good answer.
 You win only if 3 words are found.
 
 ### 🔥🔥🔥Installation (only for development purpose):
-🔥See it on the web:
+🔥See it through your local environement:
   - Through Docker
   - Through your own tools (only isolate through an env)
-
-🔥See it only in a command line interface through simple python file and a terminal (original version)
-
+  
+#### 👋See original game version on your commande line interface (branche: feature/original-version)
+  - It is the first version we do as a student team. We had a lot of joy working together. It was one my first python project and one of my first coding project. 
+  - I tried to do it alone in PHP after we have done it as a team in python. 
+  
 #### 👋Using Docker (branche: feature/config-docker)
-- Install Docker 
-- Configure docker properly (see docs)
-- Go to the application root folder and type: <code>docker compose up -d --build</code>
-- Go to your browser and access http://localhost:5000/
+  - Install Docker 
+  - Configure docker properly (see docs)
+  - Go to the application root folder and type: <code>docker compose up -d --build</code>
+  - Go to your browser and access http://localhost:5000/
 
 #### 👋Using the flask application (branche: feature/config-traditionnal)
 
 ##### install these necessary tools on your computer (or isolate them through a virtual env):
-- node.js (and npm), 
-- python3, 
-- sqlite3
+  - node.js (and npm), 
+  - python3, 
+  - sqlite3
 
 Install node.js by installing it through official website: https://nodejs.org/en/
 Install python3 by installing it through official website: https://www.python.org/downloads/
@@ -43,7 +45,7 @@ npm install npm -g
 ```
 Everything is normally automatically added to your path. Check it if the first commande above don't give a version but through an error.
 
-sqlite3 have to be manually added to your path (windows):
+###### sqlite3 have to be manually added to your path (windows):
 - Go the sqlite3 download page: https://sqlite.org/download.html
 - Download a bundler where you have a CLI 
 - Add a folder named sqlite3 to C: C:\sqlite3
