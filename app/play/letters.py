@@ -1,4 +1,4 @@
-from words import *
+from app.play.words import *
 from random import randrange
 # Our method to sort:
 
