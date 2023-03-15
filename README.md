@@ -57,7 +57,8 @@ Everything is normally automatically added to your path. Check it if the first c
 - You succeed if you have a version followed by oher stuffs. 
 Sqlite3 is installed
 
-Nota: To have a better access to sqlite tables: you can install dbbrowser as it is easier to see tables through this tool.
+To have a better access to sqlite tables you can install DBbrowser (It is easier to see tables through this tool).
+- Install it through their <a href='https://sqlitebrowser.org/dl/' alt='site de dbbrowser'>official website</a>
 
 ##### Install the app and its dependencies:
 - git clone this repo
