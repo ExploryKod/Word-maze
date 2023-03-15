@@ -1,0 +1,94 @@
+{% extends "layouts/default.html" %}
+{% block content %}
+
+<main class="p-6 mx-20 bg-white rounded-xl flex items-center justify-center space-x-4">
+    <section>
+        {% if(fl_session['username']) %}
+        <div class="basis-3/6 mx-20 flex flex-col items-center justify-center my-5 py-5">
+            <h1 class="text-3xl font-bold"> Hi {{fl_session['username']}} ! </h1>
+        </div>
+        {% endif %}
+        <section class="basis-3/6 mx-20 bg-white rounded-xl flex gap-4 items-center justify-center space-x-4">
+            <article class="self-start">
+                <pre>{{words_star}}</pre>
+                <div class="w-full bg-white rounded-lg border shadow-md dark:bg-gray-800 dark:border-gray-700">
+                    <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 bg-gray-50 rounded-t-lg border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800"
+                        id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
+                        <li class="mr-2">
+                            <button id="about-tab" data-tabs-target="#about" type="button" role="tab"
+                                aria-controls="about" aria-selected="true"
+                                class="inline-block p-4 text-blue-600 rounded-tl-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500 hover:text-blue-600 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500">
+                                Letters</button>
+                        </li>
+                        <li class="mr-2">
+                            <button id="services-tab" data-tabs-target="#indices" type="button" role="tab"
+                                aria-controls="services" aria-selected="false"
+                                class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:border-transparent text-gray-500 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700">
+                                Indices</button>
+                        </li>
+                    </ul>
+                    <div id="defaultTabContent">
+                        <div class="p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800 hidden" id="about" role="tabpanel"
+                            aria-labelledby="about-tab">
+                            {% if is_a_turn == True %}
+                            <h2
+                                class="mb-3 text-3xl text-center font-extrabold tracking-tight text-gray-900 dark:text-white">
+                                Remember that you guess a word from these letters:</h2>
+                            <h3
+                                class="mb-3 text-3xl text-center font-extrabold tracking-tight text-gray-900 dark:text-white">
+                                {{
+                                blend_words[-1].round_1 }}</h3>
+                            {% else %}
+                            <h2
+                                class="mb-3 text-3xl text-center font-extrabold tracking-tight text-gray-900 dark:text-white">
+                                Guess your word from these letters:</h2>
+                            <h3
+                                class="mb-3 text-3xl text-center font-extrabold tracking-tight text-gray-900 dark:text-white">
+                                {{
+                                blend_words.round_1 }}</h3>
+                            {% endif %}
+                        </div>
+                        <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="indices"
+                            role="tabpanel" aria-labelledby="indices-tab">
+                            <p class="font-bold text-lg text-center flex flex-col items-center">Les mots sont en rapport au thème: <span class="text-2xl text-[teal]">"{{ words_star[-1].theme }}"</span></p>
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+
+            <article class="basis-3/6 bg-white rounded-xl flex flex-column items-center justify-center space-x-4">
+
+                <div
+                    class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+                    <form class="space-y-6" action="add" method="POST">
+                        <h5 class="text-xl font-medium text-gray-900 dark:text-white">Try to find a secret word:</h5>
+                        <div>
+                            <label for="attempt"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                            </label>
+                            <input type="text" name="pseudo" id="attempt"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                placeholder="your attempt's name" required="">
+                        </div>
+                        <div>
+                            <label for="password"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Write your
+                                word:</label>
+                            <input type="text" name="word" id="password" placeholder="your word"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                required="">
+                        </div>
+                        <button type="submit"
+                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Guess
+                            your word</button>
+
+                    </form>
+                </div>
+            </article>
+
+        </section>
+
+</main>
+
+{% endblock%}
