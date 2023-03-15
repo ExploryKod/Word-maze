@@ -5,7 +5,6 @@ from config import Config
 # factory function
 def create_app(config_class=Config):
     app = Flask(__name__)
-    app.run(debug=True)
     app.config.from_object(config_class)
  
     # Initialize Flask extensions here

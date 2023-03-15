@@ -5,6 +5,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 # app.permanent_session_lifetime = timedelta(minutes=60)
 
 class Config:
+    DEBUG=True
     # adding configuration for using a sqlite database
     SECRET_KEY = os.environ.get('SECRET KEY')
     # app.config['SQLALCHEMY_DATABASE_URI'] =\

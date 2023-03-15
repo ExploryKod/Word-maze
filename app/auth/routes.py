@@ -24,7 +24,7 @@ def register_in():
     user = User(username,password)
     session.add(user)
     session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('auth.index'))
 
 
 @bp.route('/login', methods=['GET'])
@@ -37,7 +37,7 @@ def check_login():
         POST_USERNAME = str(request.form['username'])
         POST_PASSWORD = str(request.form['password'])
     else:
-        return redirect(url_for('index'))
+        return redirect(url_for('auth.index'))
     
     Session = sessionmaker(bind=engine)
     s = Session()
@@ -46,7 +46,7 @@ def check_login():
     if result:
         flash('good password!')
         fl_session['username'] = request.form['username']
-        return redirect(url_for('index'))
+        return redirect(url_for('auth.index'))
     else:
         flash('wrong password!')
         return redirect(url_for('login'))
@@ -55,4 +55,4 @@ def check_login():
 def logout():
     # remove the username from the session if it's there
     fl_session.pop('username', None)
-    return redirect(url_for('index'))
+    return redirect(url_for('main.index'))

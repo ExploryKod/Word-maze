@@ -4,7 +4,6 @@ from datetime import timedelta
 from flask import Flask, request, redirect, session, url_for, flash
 from flask.templating import render_template
 fl_session = session
-from app.play import bp
 from app.models.game_tables import *
 from app.models.authentication_check import *
 from app.models.authentication_tables import User
@@ -32,7 +31,8 @@ def add_data():
     db.session.query(Letters).delete()
     db.session.commit()
     base_list = chose_list(round_num)
-    secret_words = list_of_words(base_list)
+    secret_words = list_of_words(base_list)[0]
+    indice = list_of_words(base_list)[1][0]
     
     if secret_words != '':
         letters = letter_blend(secret_words)
@@ -40,14 +40,13 @@ def add_data():
         secret_1 = secret_words[0]
         secret_2 = secret_words[1]
         secret_3 = secret_words[2]
-        first = Secrets(secret_1=secret_1, secret_2=secret_2,secret_3=secret_3)
+        first = Secrets(secret_1=secret_1, secret_2=secret_2,secret_3=secret_3, theme=indice)
         db.session.add(first)
         db.session.add(blend_words)
         db.session.commit()
         
     words_star = Secrets.query.all()
-    
-    return render_template('play/play.html', fl_session=fl_session,first=first,letters=letters, secret_words=secret_words, word_1=secret_1,word_2=secret_2,word_3=secret_3, is_a_turn = is_a_turn, blend_words=blend_words)
+    return render_template('play/play.html',words_star=words_star, fl_session=fl_session,first=first,letters=letters, secret_words=secret_words, word_1=secret_1,word_2=secret_2,word_3=secret_3, is_a_turn = is_a_turn, blend_words=blend_words)
 
 @bp.route('/turn')
 def turns():
