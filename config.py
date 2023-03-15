@@ -10,7 +10,7 @@ class Config:
     # app.config['SQLALCHEMY_DATABASE_URI'] =\
     #         'sqlite:///' + os.path.join(basedir, 'game.db')
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')\
-        or 'sqlite:///' + os.path.join(basedir, 'app.db')
+        or 'sqlite:///' + os.path.join(basedir, 'game.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # Creating an SQLAlchemy instance
     # db = SQLAlchemy(app)

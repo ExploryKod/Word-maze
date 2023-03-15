@@ -50,3 +50,4 @@ class Scores(db.Model):
     score_object = db.Column(db.String(150), unique=False, nullable=True)
     # foreign key referring to the PK of Users (Many scores by user) - FK is on the many side
     scores_id = db.Column(db.String, db.ForeignKey("users.id"))
+    

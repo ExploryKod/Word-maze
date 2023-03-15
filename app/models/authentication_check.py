@@ -1,7 +1,7 @@
 import datetime
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from authentication_tables import *
+from app.models.authentication_tables import *
 
 engine = create_engine('sqlite:///tutorial.db', echo=True)
 

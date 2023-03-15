@@ -1,5 +1,6 @@
-from flask import render_template, redirect, url_for, session
+from flask import render_template, redirect, url_for, session, request, flash
 from app.auth import bp
+fl_session = session
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.models.authentication_check import *
 from app.models.authentication_tables import User
@@ -10,9 +11,9 @@ def index():
 
 @bp.route('/register', methods=["GET"])
 def register():
-    return render_template('sign.html', fl_session=fl_session)
+    return render_template('auth/sign.html', fl_session=fl_session)
 
-@bp.route('/register/in', methods=["POST"])
+@bp.route('/sign-in', methods=["POST"])
 def register_in():
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -28,7 +29,7 @@ def register_in():
 
 @bp.route('/login', methods=['GET'])
 def login():
-    return render_template('login.html', fl_session=fl_session)
+    return render_template('auth/login.html', fl_session=fl_session)
 
 @bp.route('/login/checked', methods=['POST'])
 def check_login():
@@ -45,7 +46,7 @@ def check_login():
     if result:
         flash('good password!')
         fl_session['username'] = request.form['username']
-        return redirect(url_for('add_data'))
+        return redirect(url_for('index'))
     else:
         flash('wrong password!')
         return redirect(url_for('login'))

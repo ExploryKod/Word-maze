@@ -4,14 +4,13 @@ from datetime import timedelta
 from flask import Flask, request, redirect, session, url_for, flash
 from flask.templating import render_template
 fl_session = session
-from app.models.game_tables import db
+from app.play import bp
+from app.models.game_tables import *
 from app.models.authentication_check import *
 from app.models.authentication_tables import User
-from words import chose_list, list_of_words
-from letters import letter_blend
+from app.play.words import chose_list, list_of_words
+from app.play.letters import letter_blend
  
-with app.app_context():  # From SQLAlchemy 3.0 
-    db.create_all()
     
 # function to render index page (home)
 @bp.route('/')
@@ -21,7 +20,8 @@ def index():
     resp = Secrets.query.all()
     player = Users.query.all() 
     points = Scores.query.all()
-    return render_template('index.html', user_words=user_words, resp=resp, player=player, points=points, fl_session=fl_session)
+    
+    return render_template('play/index.html',user_words=user_words, resp=resp, player=player, points=points, fl_session=fl_session)
 
 @bp.route('/add_data')
 def add_data():
@@ -44,17 +44,17 @@ def add_data():
         db.session.add(first)
         db.session.add(blend_words)
         db.session.commit()
-            
+        
     words_star = Secrets.query.all()
     
-    return render_template('play.html', fl_session=fl_session, letters=letters, secret_words=secret_words, word_1=secret_1,word_2=secret_2,word_3=secret_3,first=first, words_star=words_star, is_a_turn = is_a_turn, blend_words=blend_words)
+    return render_template('play/play.html', fl_session=fl_session,first=first,letters=letters, secret_words=secret_words, word_1=secret_1,word_2=secret_2,word_3=secret_3, is_a_turn = is_a_turn, blend_words=blend_words)
 
 @bp.route('/turn')
 def turns():
     words_star = Secrets.query.all()
     blend_words = Letters.query.all()
     is_a_turn = True
-    return render_template('play.html', words_star=words_star, is_a_turn = is_a_turn, blend_words=blend_words, fl_session=fl_session)
+    return render_template('play/play.html',is_a_turn = is_a_turn, fl_session=fl_session,blend_words=blend_words,words_star=words_star)
 
 # function to add profiles
 @bp.route('/add', methods=["POST"])
@@ -68,38 +68,34 @@ def profile():
         point = 0
     db.session.query(Guess).delete()
     db.session.commit()
-	# create an object of the Guess class of models
-	# and store data as a row in our datatable
     if word != '' and pseudo != '':
         answ = Guess(word=word, user_id=pseudo)
         you = Users(pseudo=pseudo, guess=word)
-        # encore faudra t-il créer la relation (scores_id (FK) => PK de Users via users_scores rel)
         points = Scores(score=point,score_object=word, scores_id = pseudo)
         db.session.add(answ)
         db.session.add(you)
         db.session.add(points)
         db.session.commit()
-        return redirect(url_for('index'))
-    elif word != words_start:
-        return render_template('index.html', words_star=words_star, word=word, fl_session=fl_session)
+        return redirect(url_for('play.index'))
+    elif word != words_star:
+        return render_template('play/index.html', words_star=words_star, word=word, fl_session=fl_session)
     else:
-	    return redirect(url_for('index'))
+	    return redirect(url_for('play.index'))
+ 
 
 @bp.route('/delete/<int:id>')
 def erase(id):
-	# Deletes the data on the basis of unique id and
-	# redirects to home page
 	data = Guess.query.get(id)
 	db.session.delete(data)
 	db.session.commit()
-	return redirect('/')
+	return redirect(url_for('play.index'))
 
 @bp.route('/delete_all/<int:id>')
 def delete_all(id):
     data = Secrets.query.get(id)
     db.session.delete(data)
     db.session.commit()
-    return redirect('/')
+    return redirect(url_for('play.index'))
 
 # if __name__ == '__main__':
 #     app.secret_key = os.urandom(12)
