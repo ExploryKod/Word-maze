@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "start":"flask run",
-    "virtual":"source c:/Users/amaur/Desktop/myWeb/Word-maze/venv/Scripts/activate",
+    "virtual-powershell":"../venv/Scripts/Activate.ps1",
     "tailwind": "npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css --watch"
   },
   "repository": {
