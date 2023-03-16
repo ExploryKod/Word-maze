@@ -1,9 +1,6 @@
 {% extends "layouts/default.html" %}
 {% block content %}
 <main>
-    {% if num_turn is defined %}
-    {{ num_turn }}
-    {% endif %}
     {% if not user_words %}
     <section class="p-6 mx-20 bg-white rounded-xl flex items-center justify-center">
         <section class="bg-white dark:bg-gray-900">
@@ -11,7 +8,7 @@
                 <div class="place-self-center mr-auto lg:col-span-6">
                     <h1
                         class="mb-4 max-w-2xl text-lg font-bold tracking-tight leading-none md:text-4xl xl:text-4xl dark:text-white">
-                        Welcome in the game board</h1>
+                        Welcome in the game board </h1>
                     <a href="/play/add_data"
                         class="inline-flex justify-center items-center py-3 px-5 mr-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
                         Start a round
@@ -132,25 +129,18 @@
     </section>
     <section class="p-6 mx-auto bg-white rounded-xl flex flex-col items-center justify-center">
             {% if resp[-1]:%}
-            {% if user_words[-1] and (user_words[-1].word == resp[-1].secret_1 or user_words[-1].word == resp[-1].secret_2
-            or
-            user_words[-1].word == resp[-1].secret_3) %}
-            <h2 class="text-center font-bold text-lg text-gray">
-         
-            <span>Bravo,</span>
-           
-            with your attempt {{player[-1].pseudo}}, you win with {{user_words[-1].word}} and gain {{points[-1].score}} points. Try to win again next turn.</h2>
-    
-            {% elif user_words[-1] and (user_words[-1].word != resp[-1].secret_1 or user_words[-1].word != resp[-1].secret_2
-            or
-            user_words[-1].word !=
-            resp[-1].secret_3) %}
-            <h2 class="text-center font-bold text-lg text-gray"> Be brave, try again as {{user_words[-1].word}} is not in my right hand</h2>
-            {% else %}
-            <h1 class="text-center font-bold text-lg text-gray">You guessed no word</h1>
-            {% endif %}
-            {% endif %}
-    
+                {% if (user_words[-1] is defined and points is defined) and (user_words[-1].word == resp[-1].secret_1 or user_words[-1].word == resp[-1].secret_2 or user_words[-1].word == resp[-1].secret_3) %}
+                    {% if points[-1].score == -1: %}
+                        <h2 class="text-center font-bold text-lg text-gray">you already win with {{user_words[-1].word}} and lose one point. Try to win again next turn.</h2>
+                    {% else %}
+                        <h2 class="text-center font-bold text-lg text-gray"><span>Bravo,</span> with your attempt {{player[-1].pseudo}}, you win with {{user_words[-1].word}} and gain {{points[-1].score}} points. Try to win again next turn.</h2>
+                    {% endif %}        
+                {% elif user_words[-1] and (user_words[-1].word != resp[-1].secret_1 or user_words[-1].word != resp[-1].secret_2 or user_words[-1].word !=resp[-1].secret_3) %}
+                    <h2 class="text-center font-bold text-lg text-gray"> Be brave, try again as {{user_words[-1].word}} is not in my right hand</h2>
+                {% else %}
+                <h1 class="text-center font-bold text-lg text-gray">You guessed no word</h1>
+                {% endif %}
+                {% endif %}
             {%else%}
             <div class="w-full mx-auto p-5 rounded-lg">
                 <p class="text-center font-bold text-lg text-gray-300">There is nothing in my hands for now, please play and I will fetch a thing</p>
@@ -180,7 +170,13 @@
     </section>
     {% if user_words %}
     <section class="p-6 mx-20 bg-white rounded-xl flex flex-col gap-2 items-center justify-center">
-
+     
+        {% if every_score is defined and every_score[0][0] %}
+        <div class="p-2 my-3 bg-grey shadow-md rounded-lg w-[80%]">
+            <h3 class="text-center text-lg text-[green]">Votre score total : {{ every_score[0][0] }}</h3>
+        </div>
+        {% endif %}
+    
         <div class="min-w-[500px] overflow-x-auto relative shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -229,8 +225,9 @@
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <td class="py-4 px-6">{{data.scores_id}}</td>
                     <td class="py-4 px-6">{{data.score_object}}</td>
-                    <td class="py-4 px-6">{{data.score}}
-                    </td>
+                    <td class="py-4 px-6">{{data.score}}</td>
+                    <td class="py-4 px-6"><a href="/play/delete_score/{{data.id}}" class="light-blue darken-4"
+                        type="button">Delete</a>
                 </tr>
                 {%endfor%}
                 </tbody>
