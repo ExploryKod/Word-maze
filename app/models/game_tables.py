@@ -56,6 +56,7 @@ class Guess(db.Model):
     # database table
     id = db.Column(db.Integer, primary_key=True)
     word = db.Column(db.String(150), unique=False, nullable=False)
+    round = db.Column(db.Integer, unique=False, nullable=True)
     # foreign key referring to the PK of Users (Many answers by user)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 

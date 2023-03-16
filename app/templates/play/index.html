@@ -1,6 +1,9 @@
 {% extends "layouts/default.html" %}
 {% block content %}
 <main>
+    {% if num_turn is defined %}
+    {{ num_turn }}
+    {% endif %}
     {% if not user_words %}
     <section class="p-6 mx-20 bg-white rounded-xl flex items-center justify-center">
         <section class="bg-white dark:bg-gray-900">
@@ -203,6 +206,33 @@
                         </td>
                     </tr>
                     {%endfor%}
+                </tbody>
+            </table>
+        </div>
+        <div class="min-w-[500px] overflow-x-auto relative shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="py-3 px-6">
+                        Attempt
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Word found
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Score
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in points %}
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td class="py-4 px-6">{{data.scores_id}}</td>
+                    <td class="py-4 px-6">{{data.score_object}}</td>
+                    <td class="py-4 px-6">{{data.score}}
+                    </td>
+                </tr>
+                {%endfor%}
                 </tbody>
             </table>
         </div>

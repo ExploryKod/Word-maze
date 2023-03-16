@@ -8,8 +8,7 @@ from app.models.game_tables import *
 from app.models.authentication_check import *
 from app.play.words import chose_list, list_of_words
 from app.play.letters import letter_blend
- 
-    
+
 # function to render index page (home)
 @bp.route('/')
 def index():
@@ -56,20 +55,26 @@ def turns():
     words_star = Secrets.query.all()
     blend_words = Letters.query.all()
     is_a_turn = True
+
     return render_template('play/play.html',is_a_turn = is_a_turn, fl_session=fl_session,blend_words=blend_words,words_star=words_star)
 
 # function to add profiles
 @bp.route('/add', methods=["POST"])
 def profile():
+    is_a_turn = True
     word = request.form.get("word")
     pseudo = request.form.get("pseudo")
     words_star = Secrets.query.all()
+    guess_data = Guess.query.all()
+    add_round = Guess(round=1, word=word,user_id=pseudo)
+    db.session.add(add_round)
+    db.session.commit()
+
     if word == words_star[-1].secret_1 or word == words_star[-1].secret_2 or word == words_star[-1].secret_3:
         point = 1
     else:
         point = 0
-    db.session.query(Guess).delete()
-    db.session.commit()
+
     if word != '' and pseudo != '':
         answ = Guess(word=word, user_id=pseudo)
         you = Users(pseudo=pseudo, guess=word)
@@ -78,11 +83,11 @@ def profile():
         db.session.add(you)
         db.session.add(points)
         db.session.commit()
-        return redirect(url_for('play.index'))
+        return render_template('play/index.html', words_star=words_star, word=word, fl_session=fl_session)
     elif word != words_star:
         return render_template('play/index.html', words_star=words_star, word=word, fl_session=fl_session)
     else:
-	    return redirect(url_for('play.index'))
+	    return render_template('play/index.html', words_star=words_star, word=word, fl_session=fl_session)
  
 
 @bp.route('/delete/<int:id>')
