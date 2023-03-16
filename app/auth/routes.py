@@ -3,11 +3,11 @@ from app.auth import bp
 fl_session = session
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.models.authentication_check import *
-from app.models.authentication_tables import User
+from app.models.game_tables import *
 
 @bp.route('/')
 def index():
-    return render_template('auth/index.html')
+    return render_template('auth/index.html', fl_session=fl_session)
 
 @bp.route('/register', methods=["GET"])
 def register():
@@ -15,16 +15,16 @@ def register():
 
 @bp.route('/sign-in', methods=["POST"])
 def register_in():
-    Session = sessionmaker(bind=engine)
-    session = Session()
+#     Session = sessionmaker(bind=engine)
+#     session = Session()
 
     username = request.form['username']
     password = request.form['password']
-    # password = generate_password_hash(password)
-    user = User(username,password)
-    session.add(user)
-    session.commit()
-    return redirect(url_for('auth.index'))
+    auth = Auth(username=username)
+    auth.set_password(password)
+    db.session.add(auth)
+    db.session.commit()
+    return render_template('auth/index.html', fl_session=fl_session)
 
 
 @bp.route('/login', methods=['GET'])
@@ -34,22 +34,20 @@ def login():
 @bp.route('/login/checked', methods=['POST'])
 def check_login():
     if request.method == 'POST':
-        POST_USERNAME = str(request.form['username'])
-        POST_PASSWORD = str(request.form['password'])
+          username = str(request.form['username'])
+          password = str(request.form['password'])
     else:
         return redirect(url_for('auth.index'))
-    
-    Session = sessionmaker(bind=engine)
-    s = Session()
-    query = s.query(User).filter(User.username.in_([POST_USERNAME]), User.password.in_([POST_PASSWORD]))
-    result = query.first()
-    if result:
-        flash('good password!')
+
+    auth_data = Auth.query.all()
+    user_pass = Auth.query.filter_by(username=username).first()
+    print(user_pass)
+    is_password_check = True
+    if is_password_check :
         fl_session['username'] = request.form['username']
-        return redirect(url_for('auth.index'))
+        return render_template('auth/index.html', user_pass=user_pass, auth_data=auth_data, username=username, fl_session=fl_session)
     else:
-        flash('wrong password!')
-        return redirect(url_for('login'))
+        return render_template('auth/login.html', auth_data=auth_data, username=username, fl_session=fl_session)
 
 @bp.route('/logout')
 def logout():

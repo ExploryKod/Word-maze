@@ -6,7 +6,6 @@ from flask.templating import render_template
 fl_session = session
 from app.models.game_tables import *
 from app.models.authentication_check import *
-from app.models.authentication_tables import User
 from app.play.words import chose_list, list_of_words
 from app.play.letters import letter_blend
  
@@ -21,6 +20,10 @@ def index():
     points = Scores.query.all()
     
     return render_template('play/index.html',user_words=user_words, resp=resp, player=player, points=points, fl_session=fl_session)
+
+@bp.route('/us')
+def about_us():
+   return render_template('play/about.html', fl_session=fl_session)
 
 @bp.route('/add_data')
 def add_data():

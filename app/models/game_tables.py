@@ -1,4 +1,5 @@
 from app.extensions import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class Letters(db.Model):
         # Id : Field which stores unique id for every row in
@@ -19,6 +20,20 @@ class Users(db.Model):
     # Many answers and many scores for one user
     user_scores = db.relationship('Scores', backref='users', lazy='dynamic', cascade = "all, delete, delete-orphan")
     user_answers = db.relationship('Guess', backref='users', lazy='dynamic', cascade = "all, delete, delete-orphan")
+
+class Auth(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(250))
+    password_hash = db.Column(db.String(128))
+
+    def set_password(self, password):
+       self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+    
+    def __repr__(self):
+        return f"username : {self.username}"
 
 class Secrets(db.Model):
         # Id : Field which stores unique id for every row in
