@@ -3,9 +3,27 @@
 
 <main class="p-6 mx-20 bg-white rounded-xl flex items-center justify-center space-x-4">
     <section>
+    
         {% if(fl_session['username']) %}
         <div class="basis-3/6 mx-20 flex flex-col items-center justify-center my-5 py-5">
             <h1 class="text-3xl font-bold"> Hi {{fl_session['username']}} ! </h1>
+        </div>
+        {% endif %}
+        {% if end_of_round is defined and end_of_round %}
+        <div class="w-[100vw] h-[100vh] bg-[rgba(0,0,0,0.5)] flex flex-col items-center justify-center z-2">
+            <div class="w-[50%] h-[50%] sm:w-[50%] shadow-md rounded-lg bg-[rgba(255,255,255,0.8)] z-10 flex flex-col items-center justify-around">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-lg text-center font-bold">{{ message }}</p>
+                            <div class="w-[80%] min-h-[20%] p-5 flex flex-row gap-2 items-center justify-center">
+                                <a class="w-[30%] px-3 py-2 my-3 rounded bg-black text-lg text-center text-white font-bold" href="{{ url_for('play.add_data') }}">Rejouer</a>
+                                <a class="w-[30%] px-3 py-2 my-3 rounded bg-black text-lg text-center text-white font-bold" href="{{ url_for('main.play') }}">Retour</a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
         </div>
         {% endif %}
         <section class="basis-3/6 mx-20 bg-white rounded-xl flex gap-4 items-center justify-center space-x-4">
