@@ -7,13 +7,13 @@ services:
             dockerfile: Dockerfile
         restart: always
         ports:
-            - 5000:5000
+            - "4000:5000"
         volumes:
             - ./:/python-docker
 
     frontend:
         build:
-            context: ./front_config
+            context: ./style_config
             dockerfile: Dockerfile
         restart: always
         volumes:
