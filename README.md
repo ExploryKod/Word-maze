@@ -59,10 +59,12 @@ Sqlite3 is installed
 
 To have a better access to sqlite tables you can install DBbrowser (It is easier to see tables through this tool).
 - Install it through their <a href='https://sqlitebrowser.org/dl/' alt='site de dbbrowser'>official website</a>
+- Access it as any Desktop app.
+###### 🔥Avoid using DBbrowser in the same time as you test locally the app in the browser. Indeed, sqlite3 is not efficient to tackle concurrency : see more information  <a href='https://9to5answer.com/sqlalchemy-and-sqlite-database-is-locked' alt='web page about a bug'>on this page</a> 
 
 ##### Install the app and its dependencies:
 - git clone this repo
-- Create a virtual environment à la racine du projet.
+- Create a virtual environment in project root.
 - You can use venv already in default python: <code>python3 -m venv venv</code> ou sur windows: <code>python -m venv venv </code>
 - and activate it (ex: in the root project folder type the path to the good activate file (windows) or type source + the good activate file (mac)). 
 - Be careful: don't type active with its extension
