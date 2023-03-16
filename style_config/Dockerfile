@@ -6,4 +6,4 @@ RUN npm install --update npm
 COPY . .
 RUN npm install
 
-CMD ["npx","tailwindcss","-i","./app/static/src/input.css","-o","./app/static/dist/css/output.css","--watch"]
+CMD ["/bin/bash", "-c", "cd app;npm run tailwind"]
