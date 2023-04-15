@@ -26,6 +26,10 @@ def create_app(config_class=Config):
         app.secret_key = os.environ.get('SECRET_KEY')
         app.permanent_session_lifetime = timedelta(minutes=60)
         app.debug = False
-        db.create_all()
+
+         inspector = inspect(db.engine)
+         if not inspector.has_table('auth'):
+            db.create_all()
+
 
     return app
