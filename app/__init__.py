@@ -1,6 +1,7 @@
 import os
 from flask import Flask
 from app.extensions import db
+from sqlalchemy import inspect
 from datetime import datetime, timedelta
 from config import Config
 
