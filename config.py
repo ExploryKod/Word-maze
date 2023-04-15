@@ -12,3 +12,8 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # Creating an SQLAlchemy instance
     # db = SQLAlchemy(app)
+
+    # Configuration pour Gunicorn
+    WORKERS = 4
+    BIND_ADDRESS = '0.0.0.0:5000'
+    TIMEOUT = 60

@@ -9,7 +9,7 @@ WORKDIR /python-docker
 # Installe les dépendances Python
 RUN pip install --upgrade pip
 COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Installe Node.js et les dépendances pour l'application front-end
 RUN apt-get update && apt-get install -y curl gnupg
@@ -20,6 +20,7 @@ COPY . .
 RUN npm install
 
 # Définit la commande par défaut pour lancer l'application
-WORKDIR /python-docker
-CMD ["bash", "-c", "(cd app; npm run tailwind &) && gunicorn -w 4 -b 0.0.0.0:5000 'app:create_app()'"]
+CMD ["bash", "-c", "(cd app; npm run tailwind &) && gunicorn -w 4 -b 0.0.0.0:${PORT:-5000} 'app:create_app()'"]
+
+
 
