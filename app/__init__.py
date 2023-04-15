@@ -27,8 +27,8 @@ def create_app(config_class=Config):
         app.permanent_session_lifetime = timedelta(minutes=60)
         app.debug = False
 
-         inspector = inspect(db.engine)
-         if not inspector.has_table('auth'):
+        inspector = inspect(db.engine)
+        if not inspector.has_table('auth'):
             db.create_all()
 
 
