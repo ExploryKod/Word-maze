@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y curl gnupg
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install -y nodejs
 RUN npm install --update npm
-COPY . ./python-docker
+COPY . /python-docker
 RUN npm install
 
 # Définit la commande par défaut pour lancer l'application
