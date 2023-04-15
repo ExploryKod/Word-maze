@@ -8,8 +8,6 @@ services:
             - $PORT:$PORT
         volumes:
             - .:/python-docker
-        environment:
-            - NODE_ENV=production
         env_file:
             - .env
 
