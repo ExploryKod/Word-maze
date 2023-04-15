@@ -28,26 +28,35 @@ You win only if 3 words are found.
   - It is the first version we do as a student team. We had a lot of joy working together. It was one my first python project and one of my first coding project. 
   - I tried to do it alone in PHP after we have done it as a team in python. 
   
-#### 👋Using Docker:
+#### 👋Using Docker
+
    #### 🔥Discover the factory pattern approach and blueprints (branche: config/dockerize-factory-app)
-      - Install Docker 
-      - Configure docker properly (see docs)
-      - Go to the application root folder and type: <code>docker compose up -d --build</code>
-      - Go to your browser and access http://localhost:4000/
+   
+  - Install Docker 
+  - Configure docker properly (see docs)
+  - Go to the application root folder and use this command: <br/>
+  
+    ```bash  
+    docker compose up -d --build
+    ```
+    
+  - Go to your browser and access http://localhost:4000/
+  
    #### 🔥Compare with traditonnal approach using docker (branche: feature/config-docker)
-      - The above steps
-      - Go to your browser and access http://localhost:5000/
+  - The above steps
+  - Go to your browser and access http://localhost:5000/
       
 #### 👋Using the flask application (branche: feature/config-traditionnal)
 
   ##### install these necessary tools on your computer (or isolate them through a virtual env):
-    - node.js (and npm), 
-    - python3, 
-    - sqlite3
+  - node.js (and npm), 
+  - python3, 
+  - sqlite3
 
   Install node.js by installing it through official website: https://nodejs.org/en/
   Install python3 by installing it through official website: https://www.python.org/downloads/
   Npm is already installed through Node.js, check if you have the last version and if not just do the second command: 
+  
   ```
   npm --version 
   npm install npm -g
