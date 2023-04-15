@@ -3,6 +3,8 @@ from sqlalchemy import create_engine, ForeignKey
 from sqlalchemy import Column, Date, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import inspect
 
 engine = create_engine('sqlite:///auth.db', echo=True)
 Base = declarative_base()
@@ -19,6 +21,8 @@ class User(Base):
         self.password = password
 
 # Vérifie si la table existe déjà dans la base de données
-if not engine.dialect.has_table(engine, 'users'):
+inspector = inspect(engine)
+if not inspector.has_table('users'):
     # Crée la table si elle n'existe pas
     Base.metadata.create_all(engine)
+
