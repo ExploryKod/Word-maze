@@ -3,7 +3,7 @@
   <img width="50%" src="cover.png" />
 </p>
 
-# <p align="center"> <a href='http://explorypython.pythonanywhere.com/' alt='site web'>Word Maze </a> </p>
+# <p align="center"> <a href='https://app-maze.onrender.com' alt='site web'>Word Maze </a> </p>
 
 ## <p align="center">🔥🔥🔥A game to play with words 🔥🔥🔥</p>
 
@@ -12,7 +12,7 @@
   - 👀 factory pattern with Flask 
   - 👀 Organize my code through "Blueprints"
 
-### 👀 website is not ready for production but I create this <a href='http://explorypython.pythonanywhere.com/' alt='site en ligne'>primitive online version</a><br>
+### 👀 website is not ready for production but I create this <a href='https://app-maze.onrender.com' alt='site en ligne'>primitive online version</a><br>
 
 ### 🔥🔥🔥Rules of the game
 You need to guess 3 words that the program choose among a list of secret words. 
