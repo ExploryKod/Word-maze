@@ -2,19 +2,15 @@ version: "3.8"
 
 services:
     backend:
-        build:
-            context: .
-            dockerfile: Dockerfile
+        build: .
         restart: always
         ports:
             - "4000:5000"
         volumes:
-            - ./:/python-docker
+            - .:/python-docker
 
     frontend:
-        build:
-            context: ./style_config
-            dockerfile: Dockerfile
+        build: .
         restart: always
         volumes:
-            - ./:/python-docker
+            - .:/python-docker
