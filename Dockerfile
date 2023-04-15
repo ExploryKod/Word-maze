@@ -16,9 +16,11 @@ RUN apt-get update && apt-get install -y curl gnupg
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install -y nodejs
 RUN npm install --update npm
-COPY . /python-docker
+COPY . .
+COPY app/package.json app/package-lock.json ./
 RUN npm install
-RUN npm install -g tailwindcss@3.3.1
+RUN npm install -g tailwindcss postcss autoprefixer
+
 
 # Définit la commande par défaut pour lancer l'application
 CMD ["bash", "-c", "(cd app; npm run tailwind &) && gunicorn -w 4 -b 0.0.0.0:${PORT:-5000} 'app:create_app()'"]
