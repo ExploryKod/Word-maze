@@ -4,6 +4,17 @@ from app.extensions import db
 from sqlalchemy import inspect
 from datetime import datetime, timedelta
 from config import Config
+from sqlalchemy.schema import CreateTable
+from sqlalchemy.exc import OperationalError
+
+def create_tables_if_not_exist():
+    try:
+        for table in reversed(db.metadata.sorted_tables):
+            table.create(bind=db.engine, checkfirst=True)
+            print(f"Table {table.name} created")
+    except OperationalError as error:
+        print(f"Error creating tables: {error}")
+
 
 # factory function
 def create_app(config_class=Config):
@@ -28,9 +39,7 @@ def create_app(config_class=Config):
         app.permanent_session_lifetime = timedelta(minutes=60)
         app.debug = False
 
-        inspector = inspect(db.engine)
-        if not inspector.has_table('auth'):
-            db.create_all()
+        create_tables_if_not_exist()
 
 
     return app

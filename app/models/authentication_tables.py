@@ -18,5 +18,7 @@ class User(Base):
         self.username = username
         self.password = password
 
-# create tables
-Base.metadata.create_all(engine)
+# Vérifie si la table existe déjà dans la base de données
+if not engine.dialect.has_table(engine, 'users'):
+    # Crée la table si elle n'existe pas
+    Base.metadata.create_all(engine)
