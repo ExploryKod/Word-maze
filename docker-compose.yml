@@ -1,16 +1,16 @@
 version: "3.8"
 
 services:
-    backend:
+    web:
         build: .
-        restart: always
+        command: gunicorn -w 4 -b 0.0.0.0:$PORT 'app:create_app()'
         ports:
-            - "4000:5000"
+            - $PORT:$PORT
         volumes:
             - .:/python-docker
+        environment:
+            - NODE_ENV=production
+        env_file:
+            - .env
 
-    frontend:
-        build: .
-        restart: always
-        volumes:
-            - .:/python-docker
+
