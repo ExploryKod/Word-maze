@@ -1,11 +1,11 @@
 {% extends "layouts/default.html" %}
 {% block content %}
 
-<main class="p-6 mx-20 bg-white rounded-xl flex items-center justify-center space-x-4">
+<main class="p-6 sm:mx-20 bg-white rounded-xl flex flex-col sm:flex-row items-center justify-center space-x-4">
     <section>
     
         {% if(fl_session['username']) %}
-        <div class="basis-3/6 mx-20 flex flex-col items-center justify-center my-5 py-5">
+        <div class="basis-3/6 sm:mx-20 flex flex-col items-center justify-center my-5 py-5">
             <h1 class="text-3xl font-bold"> Hi {{fl_session['username']}} ! </h1>
         </div>
         {% endif %}
@@ -25,10 +25,9 @@
                 {% endwith %}
             </div>
         </div>
-        {% endif %}
-        <section class="basis-3/6 mx-20 bg-white rounded-xl flex gap-4 items-center justify-center space-x-4">
-            <article class="self-start">
-                <pre>{{words_star}}</pre>
+        {% else %}
+        <section class="w-full sm:mx-20 bg-white rounded-xl flex flex-col sm:flex-row gap-4 items-center justify-center space-x-4">
+            <article class="w-full self-start">
                 <div class="w-full bg-white rounded-lg border shadow-md dark:bg-gray-800 dark:border-gray-700">
                     <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 bg-gray-50 rounded-t-lg border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800"
                         id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
@@ -75,7 +74,7 @@
 
             </article>
 
-            <article class="basis-3/6 bg-white rounded-xl flex flex-column items-center justify-center space-x-4">
+            <article class="w-full bg-white rounded-xl flex flex-col items-center justify-center space-x-4">
 
                 <div
                     class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -104,7 +103,7 @@
                     </form>
                 </div>
             </article>
-
+            {% endif %}
         </section>
 
 </main>
