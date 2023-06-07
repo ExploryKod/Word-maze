@@ -20,6 +20,10 @@ def create_tables_if_not_exist():
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
+    
+    # Configuration du répertoire statique
+    app.static_folder = 'static'
+    app.static_url_path = ''
 
     # Initialize Flask extensions here
     db.init_app(app)
