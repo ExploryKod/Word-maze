@@ -12,17 +12,15 @@
   - 👀 factory pattern with Flask 
   - 👀 Organize my code through "Blueprints"
 
-### 👀 website is not ready for production but I create this <a href='https://app-maze.onrender.com' alt='site en ligne'>primitive online version</a><br>
-
 ### 🔥🔥🔥Rules of the game
 You need to guess 3 words that the program choose among a list of secret words. 
 You have one point by good answer.
 You win only if 3 words are found.
 
-### 🔥🔥🔥Installation (only for development purpose):
+### 🔥🔥🔥Installation :
 🔥See it through your local environement:
   - Through Docker
-  - Through your own tools (only isolate through an env)
+  - Through your own tools
   
 #### 👋See original game version on your commande line interface (branche: feature/original-version)
   - It is the first version we do as a student team. We had a lot of joy working together. It was one my first python project and one of my first coding project. 
