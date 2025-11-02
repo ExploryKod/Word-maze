@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+    web:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                ENV_CONTEXT: production
+        container_name: word-maze
+        restart: always
+        ports:
+            - "5000:5000"  # Changez le port externe si nécessaire (ex: "8080:5000")
+        environment:
+            # Port interne de l'application
+            PORT: "5000"
+            # Clé secrète Flask (à définir dans le gestionnaire Docker Hostinger)
+            SECRET_KEY: ${SECRET_KEY}
+            # URI de la base de données (SQLite par défaut, MySQL si configuré)
+            DATABASE_URI: ${DATABASE_URI:-sqlite:///game.db}
+        # Pas de volume mount en production (l'application est compilée dans l'image)
+        # Pas de env_file - utilisez les variables d'environnement du gestionnaire Docker
+

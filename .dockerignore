@@ -1,0 +1,35 @@
+# Exclude environment files from Docker build
+.env
+*.env
+.env.local
+.env.*.local
+
+# Exclude development files
+docker-compose.yml
+docker-compose.dev.yml
+README.md
+
+# Exclude git files
+.git
+.gitignore
+
+# Exclude IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Exclude Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Exclude node_modules if not needed in production
+# (remove this line if npm packages are needed at runtime)
+node_modules/
+
+# Exclude documentation
+*.md
+

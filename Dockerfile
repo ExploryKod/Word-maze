@@ -21,10 +21,11 @@ COPY app/package.json app/package-lock.json ./
 RUN npm install
 RUN npm install -g tailwindcss postcss autoprefixer
 
-# Charge les variables d'environnement du fichier .env
+# Variables d'environnement - ne copie pas .env en production
+# Les variables seront injectées par le gestionnaire Docker Hostinger
 ARG ENV_CONTEXT=production
 ENV ENVIRONMENT=$ENV_CONTEXT
-COPY .env ./
+# .env est exclu via .dockerignore pour la production
 
 # Définit la commande par défaut pour lancer l'application
 CMD ["bash", "-c", "if [ \"$ENVIRONMENT\" == \"production\" ]; then (cd app; npm run tailwind &) else (cd app; npm run tailwind-dev &) fi && gunicorn -w 4 -b 0.0.0.0:${PORT:-5000} 'app:create_app()'"]
