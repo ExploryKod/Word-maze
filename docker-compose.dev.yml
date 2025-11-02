@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+    web:
+        build: .
+        command: gunicorn -w 4 -b 0.0.0.0:$PORT 'app:create_app()'
+        ports:
+            - $PORT:$PORT
+        volumes:
+            - .:/python-docker
+        env_file:
+            - .env
+
+
