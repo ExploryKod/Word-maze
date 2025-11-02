@@ -1,21 +1,29 @@
 #syntax=docker/dockerfile:1
 
-# Utilise l'image Docker officielle de Python 3.8
-FROM python:3.8-slim-buster
+# Utilise l'image Docker officielle de Python (version plus récente)
+FROM python:3.11-slim
 
 # Définit le répertoire de travail
 WORKDIR /python-docker
+
+# Installe les dépendances système et Node.js
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    curl \
+    gnupg \
+    ca-certificates && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y --no-install-recommends nodejs && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Installe les dépendances Python
 RUN pip install --upgrade pip
 COPY requirements.txt requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-# Installe Node.js et les dépendances pour l'application front-end
-RUN apt-get update && apt-get install -y curl gnupg
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get install -y nodejs
-RUN npm install --update npm
+# Met à jour npm
+RUN npm install -g npm@latest
 COPY . .
 COPY app/package.json app/package-lock.json ./
 RUN npm install
