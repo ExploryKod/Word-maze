@@ -21,9 +21,10 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
     
-    # Configuration du répertoire statique
+    # Configuration du répertoire statique (chemin relatif depuis le package app)
+    # Flask cherche automatiquement dans app/static/ si static_folder = 'static'
     app.static_folder = 'static'
-    app.static_url_path = ''
+    app.static_url_path = '/static'
 
     # Initialize Flask extensions here
     db.init_app(app)

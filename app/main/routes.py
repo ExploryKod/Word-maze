@@ -1,4 +1,5 @@
 from flask import render_template, session
+from datetime import datetime
 fl_session = session
 from app.main import bp
 
@@ -17,7 +18,8 @@ def mentions_legales():
 
 @bp.route('/politique-confidentialite')
 def politique_confidentialite():
-    return render_template('legal/politique_confidentialite.html', fl_session=fl_session)
+    current_date = datetime.now().strftime('%d/%m/%Y')
+    return render_template('legal/politique_confidentialite.html', fl_session=fl_session, current_date=current_date)
 
 @bp.route('/cgu')
 def cgu():

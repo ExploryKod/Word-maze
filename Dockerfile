@@ -27,10 +27,13 @@ RUN npm install -g npm@latest
 RUN (getent group www-data || groupadd -r www-data) && \
     (getent passwd www-data || useradd -r -g www-data www-data)
 
-COPY . .
+# Copie les fichiers package.json en premier pour optimiser le cache
 COPY app/package.json app/package-lock.json ./
 RUN npm install
 RUN npm install -g tailwindcss postcss autoprefixer
+
+# Copie tous les fichiers de l'application (templates, static, etc.)
+COPY . .
 
 # Crée les répertoires nécessaires et définit les permissions pour www-data
 RUN mkdir -p /python-docker/instance && \
