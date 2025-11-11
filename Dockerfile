@@ -23,8 +23,9 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 # Met à jour npm (npm@11 sera compatible avec Node 22)
 RUN npm install -g npm@latest
 
-# Crée le groupe et l'utilisateur www-data
-RUN groupadd -r www-data && useradd -r -g www-data www-data
+# Crée le groupe et l'utilisateur www-data s'ils n'existent pas déjà
+RUN (getent group www-data || groupadd -r www-data) && \
+    (getent passwd www-data || useradd -r -g www-data www-data)
 
 COPY . .
 COPY app/package.json app/package-lock.json ./
