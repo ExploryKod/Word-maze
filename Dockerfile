@@ -31,8 +31,8 @@ COPY app/package.json app/package-lock.json ./
 RUN npm install
 RUN npm install -g tailwindcss postcss autoprefixer
 
-# Définit les permissions pour les fichiers npm critiques
-RUN chown -R www-data:www-data /python-docker/package-lock.json /python-docker/package.json /python-docker/node_modules && \
+# Définit les permissions pour les fichiers npm critiques et le répertoire app
+RUN chown -R www-data:www-data /python-docker/package-lock.json /python-docker/package.json /python-docker/node_modules /python-docker/app && \
     chmod 664 /python-docker/package-lock.json /python-docker/package.json
 
 # Copie le script d'initialisation et le rend exécutable
@@ -43,6 +43,9 @@ RUN chmod +x /docker-entrypoint.sh && \
 # Variables d'environnement
 ARG ENV_CONTEXT=production
 ENV ENVIRONMENT=$ENV_CONTEXT
+
+# Change vers l'utilisateur non-root
+USER www-data
 
 # Expose le port
 EXPOSE 5000

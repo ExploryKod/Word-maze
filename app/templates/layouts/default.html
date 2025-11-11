@@ -1,10 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Tarteaucitron CSS -->
+    <link rel="stylesheet" href="{{url_for('static',filename='tarteaucitron/tarteaucitron.min.css')}}">
+    
+    <!-- Tarteaucitron JS -->
+    <script src="{{url_for('static',filename='tarteaucitron/tarteaucitron.min.js')}}"></script>
+    <script src="{{url_for('static',filename='tarteaucitron/tarteaucitron.services.min.js')}}"></script>
+    <script src="{{url_for('static',filename='tarteaucitron/lang/tarteaucitron.fr.min.js')}}"></script>
+    <script src="{{url_for('static',filename='tarteaucitron/flowbite.service.js')}}"></script>
+    
+    <!-- Initialisation de Tarteaucitron -->
+    <script type="text/javascript">
+    tarteaucitron.init({
+        "privacyUrl": "{{ url_for('main.politique_confidentialite') }}", /* URL de la politique de confidentialité */
+        "bodyPosition": "top", /* top pour l'accessibilité */
+        
+        "hashtag": "#tarteaucitron", /* Ouvrir le panneau avec ce hashtag */
+        "cookieName": "tarteaucitron", /* Nom du cookie */
+        
+        "orientation": "middle", /* Position de la bannière (top - bottom - middle) */
+        
+        "groupServices": true, /* Grouper les services par catégorie */
+        "showDetailsOnClick": true, /* Cliquer pour développer la description */
+        "serviceDefaultState": "wait", /* État par défaut (true - wait - false) */
+        
+        "showAlertSmall": false, /* Afficher la petite bannière en bas à droite */
+        "cookieslist": false, /* Afficher la liste des cookies dans une mini bannière */
+        "cookieslistEmbed": false, /* Afficher la liste des cookies sur le panneau de contrôle */
+        
+        "closePopup": true, /* Afficher un X pour fermer la bannière */
+        
+        "showIcon": true, /* Afficher l'icône cookie pour gérer les cookies */
+        "iconPosition": "BottomRight", /* Position de l'icône cookie (BottomRight - BottomLeft - TopRight - TopLeft) */
+        
+        "adblocker": false, /* Afficher un avertissement si un bloqueur de pub est détecté */
+        
+        "DenyAllCta": true, /* Afficher le bouton tout refuser */
+        "AcceptAllCta": true, /* Afficher le bouton tout accepter */
+        "highPrivacy": true, /* RECOMMANDÉ : Désactiver le consentement automatique */
+        "alwaysNeedConsent": false, /* Demander le consentement pour les services "Privacy by design" */
+        
+        "handleBrowserDNTRequest": false, /* Si Do Not Track == 1, tout refuser */
+        
+        "removeCredit": false, /* Retirer le lien de crédit */
+        "moreInfoLink": true, /* Afficher le lien plus d'infos */
+        
+        "useExternalCss": false, /* Mode expert : ne pas charger le fichier tarteaucitron.css */
+        "useExternalJs": false, /* Mode expert : ne pas charger les fichiers js tarteaucitron */
+        
+        "readmoreLink": "{{ url_for('main.politique_confidentialite') }}", /* Lien vers la politique de confidentialité */
+        
+        "mandatory": true, /* Afficher un message sur les cookies obligatoires */
+        "mandatoryCta": false, /* Afficher le bouton accepter désactivé quand mandatory est activé */
+        
+        "googleConsentMode": false, /* Activer Google Consent Mode v2 pour Google ads & GA4 */
+        "bingConsentMode": false, /* Activer Bing Consent Mode pour Clarity & Bing Ads */
+        "pianoConsentMode": false, /* Activer Consent Mode pour Piano Analytics */
+        "softConsentMode": false, /* Mode consentement doux (le consentement est requis pour charger les services) */
+        
+        "dataLayer": false, /* Envoyer un événement à dataLayer avec le statut des services */
+        "serverSide": false, /* Côté serveur uniquement, les tags ne sont pas chargés côté client */
+        
+        "partnersList": true /* Afficher le nombre de partenaires sur le popup/bannière */
+    });
+    </script>
+    
     <!-- Compiled and minified CSS - materialize -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -154,8 +220,18 @@
         </div>
     </footer>
 
-    <!-- Flowbite tailwind css components library (here as CDN but it can be imported also from node_modules)  -->
-    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+    <!-- Flowbite tailwind css components library (géré par tarteaucitron) -->
+    <script>
+    (tarteaucitron.job = tarteaucitron.job || []).push('flowbite');
+    </script>
+    <script>
+    tarteaucitron.user.flowbite = function () {
+        var script = document.createElement('script');
+        script.src = 'https://unpkg.com/flowbite@1.5.3/dist/flowbite.js';
+        script.async = true;
+        document.head.appendChild(script);
+    };
+    </script>
     <script src="{{url_for('static', filename='js/script.js')}}"></script>
     <script>
         // Show warning modal on page load if not already accepted
