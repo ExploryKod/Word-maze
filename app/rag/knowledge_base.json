@@ -1,0 +1,143 @@
+[
+  {
+    "theme": "Sens",
+    "text": "Les cinq sens sont la vue, l'ouïe, le goût, l'odorat et le toucher. La vue permet de percevoir les couleurs et les formes. L'ouïe permet d'entendre les sons. Le goût permet de distinguer les saveurs. L'odorat permet de sentir les odeurs. Le toucher permet de ressentir les textures comme rêche ou doux.",
+    "type": "theme_explanation"
+  },
+  {
+    "theme": "Sens",
+    "word": "écoute",
+    "text": "Écoute fait référence au sens de l'ouïe, la capacité d'entendre et de percevoir les sons. C'est l'action de prêter attention aux sons qui nous entourent.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "Sens",
+    "word": "doux",
+    "text": "Doux est une texture que l'on perçoit par le sens du toucher. C'est quelque chose de doux, agréable au contact, comme la soie ou le coton.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "Sens",
+    "word": "visuel",
+    "text": "Visuel se rapporte au sens de la vue. C'est tout ce qui concerne la perception par les yeux, les images, les couleurs, les formes.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "Sens",
+    "word": "goût",
+    "text": "Le goût est l'un des cinq sens qui permet de percevoir les saveurs des aliments : sucré, salé, acide, amer, umami.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "Sens",
+    "word": "toucher",
+    "text": "Le toucher est le sens qui permet de percevoir les textures, les températures et les pressions par contact avec la peau.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "Sens",
+    "word": "odeurs",
+    "text": "Les odeurs sont perçues par le sens de l'odorat. C'est la capacité de détecter et d'identifier les différentes senteurs dans l'air.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "Sens",
+    "word": "rèche",
+    "text": "Rèche (ou rêche) est une texture rugueuse, rugueuse au toucher, opposée à doux. C'est quelque chose d'irritant ou d'âpre au contact.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "Chti",
+    "text": "Le Chti est un dialecte parlé dans le Nord de la France, notamment dans la région des Hauts-de-France. Il est caractérisé par des expressions et des mots spécifiques à cette région.",
+    "type": "theme_explanation"
+  },
+  {
+    "theme": "Chti",
+    "word": "pluie",
+    "text": "Pluie en Chti fait référence à la pluie, un phénomène météorologique commun dans le Nord de la France.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "Chti",
+    "word": "welsh",
+    "text": "Le Welsh est un plat traditionnel du Nord de la France, composé de pain, de jambon, de fromage fondu et de bière. C'est un plat emblématique de la cuisine chti.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "Chti",
+    "word": "Cassel",
+    "text": "Cassel est une commune du Nord de la France, située dans le département du Nord. C'est une ville historique de la région des Hauts-de-France.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "Chti",
+    "word": "endives",
+    "text": "Les endives sont un légume très apprécié dans le Nord de la France. Elles sont souvent préparées en gratin ou à la béchamel.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "Chti",
+    "word": "chicoree",
+    "text": "La chicorée est une plante cultivée dans le Nord de la France, utilisée comme substitut du café ou comme légume.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "Chti",
+    "word": "coron",
+    "text": "Un coron est un type de logement ouvrier typique du Nord de la France, construit pour les mineurs et leurs familles au 19ème siècle.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "mesure",
+    "text": "Les mesures sont des unités utilisées pour quantifier différentes grandeurs : longueur, largeur, hauteur, distance, superficie, volume. Les unités de mesure incluent les mètres, kilomètres, centimètres, etc.",
+    "type": "theme_explanation"
+  },
+  {
+    "theme": "mesure",
+    "word": "grand",
+    "text": "Grand est une mesure de taille ou d'ampleur. C'est quelque chose qui a une dimension importante, qui dépasse la moyenne.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "mesure",
+    "word": "petit",
+    "text": "Petit est l'opposé de grand, une mesure de petite taille ou d'ampleur réduite.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "mesure",
+    "word": "large",
+    "text": "Large est une mesure de largeur, la dimension horizontale d'un objet ou d'un espace.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "mesure",
+    "word": "long",
+    "text": "Long est une mesure de longueur, la dimension principale d'un objet dans sa plus grande étendue.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "mesure",
+    "word": "plan",
+    "text": "Un plan est une représentation en deux dimensions d'un espace ou d'un objet, souvent utilisé en architecture ou en géographie.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "mesure",
+    "word": "km",
+    "text": "Km est l'abréviation de kilomètre, une unité de mesure de distance égale à 1000 mètres.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "mesure",
+    "word": "mesures",
+    "text": "Les mesures sont des actions ou des résultats de mesurer, quantifier une grandeur physique.",
+    "type": "word_explanation"
+  },
+  {
+    "theme": "mesure",
+    "word": "mètres",
+    "text": "Les mètres sont l'unité de base de mesure de longueur dans le système métrique international.",
+    "type": "word_explanation"
+  }
+]

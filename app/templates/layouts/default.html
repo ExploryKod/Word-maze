@@ -68,13 +68,146 @@
 
     {% block content %}{% endblock%}
 
-    <footer>
+    <!-- Warning Modal -->
+    <div id="warning-modal" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center">
+        <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
+                <!-- Modal header -->
+                <div class="py-4 px-6 rounded-t border-b dark:border-gray-600 bg-yellow-50 dark:bg-yellow-900/20">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-yellow-600 dark:text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                            Avertissement important
+                        </h3>
+                        <button type="button" id="close-warning-modal"
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Modal body -->
+                <div class="p-6">
+                    <div class="mb-4 text-gray-700 dark:text-gray-300">
+                        <p class="mb-4">
+                            <strong>Ce site est un site de démo dans le cadre de l'apprentissage du métier de développeur.</strong>
+                        </p>
+                        <p class="mb-4">
+                            Nous demandons donc de <strong>ne pas utiliser de données personnelles</strong> (véritable email, véritable nom, prénoms ou autre identifiants) dans l'usage du site.
+                        </p>
+                        <p class="mb-4">
+                            L'inscription et la connexion est factice et les comptes peuvent être supprimé sans justification ni préavis à tout moment.
+                        </p>
+                    </div>
+                    <div class="flex items-center p-4 mb-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300">
+                        <svg class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div>
+                            <span class="font-medium">En savoir plus :</span> Consultez nos 
+                            <a href="{{ url_for('main.cgu') }}" class="font-medium text-blue-600 hover:underline dark:text-blue-500">CGU</a>, 
+                            <a href="{{ url_for('main.politique_confidentialite') }}" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Politique de confidentialité</a> 
+                            et <a href="{{ url_for('main.mentions_legales') }}" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Mentions légales</a>.
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
+                    <button type="button" id="accept-warning-btn"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        J'ai compris
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 mt-8">
+        <div class="max-w-screen-xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-sm text-gray-500 dark:text-gray-400 mb-4 md:mb-0">
+                    © 2024 Word Maze - Site de démonstration
+                </div>
+                <div class="flex flex-wrap gap-4 text-sm">
+                    <a href="{{ url_for('main.mentions_legales') }}" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                        Mentions légales
+                    </a>
+                    <span class="text-gray-400">|</span>
+                    <a href="{{ url_for('main.politique_confidentialite') }}" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                        Politique de confidentialité
+                    </a>
+                    <span class="text-gray-400">|</span>
+                    <a href="{{ url_for('main.cgu') }}" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                        CGU
+                    </a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <!-- Flowbite tailwind css components library (here as CDN but it can be imported also from node_modules)  -->
     <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
-    <script href="{{url_for('static', filename='js/script.js')}}"></script>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+    <script>
+        // Show warning modal on page load if not already accepted
+        document.addEventListener('DOMContentLoaded', function() {
+            const warningAccepted = localStorage.getItem('warningAccepted');
+            if (!warningAccepted) {
+                // Wait for Flowbite to be loaded
+                setTimeout(function() {
+                    const modal = document.getElementById('warning-modal');
+                    if (modal) {
+                        // Remove hidden class and add necessary classes to show modal
+                        modal.classList.remove('hidden');
+                        modal.setAttribute('aria-hidden', 'false');
+                        
+                        // Add backdrop
+                        const backdrop = document.createElement('div');
+                        backdrop.id = 'warning-modal-backdrop';
+                        backdrop.className = 'fixed inset-0 bg-gray-900 bg-opacity-50 dark:bg-opacity-80 z-40';
+                        document.body.appendChild(backdrop);
+                        document.body.style.overflow = 'hidden';
+                        
+                        // Function to close modal
+                        function closeModal() {
+                            localStorage.setItem('warningAccepted', 'true');
+                            modal.classList.add('hidden');
+                            modal.setAttribute('aria-hidden', 'true');
+                            const backdropEl = document.getElementById('warning-modal-backdrop');
+                            if (backdropEl) {
+                                backdropEl.remove();
+                            }
+                            document.body.style.overflow = '';
+                        }
+                        
+                        // Handle accept button
+                        const acceptBtn = document.getElementById('accept-warning-btn');
+                        if (acceptBtn) {
+                            acceptBtn.addEventListener('click', closeModal);
+                        }
+                        
+                        // Handle close button
+                        const closeBtn = document.getElementById('close-warning-modal');
+                        if (closeBtn) {
+                            closeBtn.addEventListener('click', closeModal);
+                        }
+                        
+                        // Handle backdrop click
+                        backdrop.addEventListener('click', closeModal);
+                    }
+                }, 100);
+            }
+        });
+    </script>
 </body>
 
 </html>
