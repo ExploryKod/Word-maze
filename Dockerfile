@@ -23,14 +23,22 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 # Met à jour npm (npm@11 sera compatible avec Node 22)
 RUN npm install -g npm@latest
 
+# Crée le groupe et l'utilisateur www-data
+RUN groupadd -r www-data && useradd -r -g www-data www-data
+
 COPY . .
 COPY app/package.json app/package-lock.json ./
 RUN npm install
 RUN npm install -g tailwindcss postcss autoprefixer
 
+# Définit les permissions pour les fichiers npm critiques
+RUN chown -R www-data:www-data /python-docker/package-lock.json /python-docker/package.json /python-docker/node_modules && \
+    chmod 664 /python-docker/package-lock.json /python-docker/package.json
+
 # Copie le script d'initialisation et le rend exécutable
 COPY docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh && \
+    chown www-data:www-data /docker-entrypoint.sh
 
 # Variables d'environnement
 ARG ENV_CONTEXT=production
