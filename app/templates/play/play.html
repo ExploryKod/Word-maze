@@ -1,7 +1,7 @@
 {% extends "layouts/default.html" %}
 {% block content %}
 
-<main class="p-6 sm:mx-20 bg-white rounded-xl flex flex-col sm:flex-row items-center justify-center space-x-4">
+<div class="p-6 sm:mx-20 bg-white rounded-xl flex flex-col sm:flex-row items-center justify-center space-x-4">
     <section>
     
         {% if(fl_session['username']) %}
@@ -106,6 +106,6 @@
             {% endif %}
         </section>
 
-</main>
+</div>
 
 {% endblock%}

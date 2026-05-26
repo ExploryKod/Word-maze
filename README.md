@@ -80,18 +80,31 @@ You win only if 3 words are found.
 
   ##### Install the app and its dependencies:
   - git clone this repo
-  - Create a virtual environment in project root.
-  - You can use venv already in default python: <code>python3 -m venv venv</code> ou sur windows: <code>python -m venv venv </code>
-  - and activate it (ex: in the root project folder type the path to the good activate file (windows) or type source + the good activate file (mac)). 
-  - Be careful: don't type active with its extension
-  - Install dependencies using requirement.txt : <code>pip install -r requirement.txt</code>
-  - Install dependancies from package.json using : <code>npm install</code>
+  - From the project root, create a virtual environment:
+    - Linux / macOS: <code>python3 -m venv venv</code>
+    - Windows: <code>python -m venv venv</code>
+  - Activate it and **keep it active** for every Python command below (open a new terminal and activate again if needed):
+    - Linux / macOS: <code>source venv/bin/activate</code>
+    - Windows (cmd): <code>venv\Scripts\activate</code>
+    - Windows (PowerShell): <code>venv\Scripts\Activate.ps1</code>
+  - With the venv active, install Python dependencies: <code>pip install -r requirements.txt</code>
+  - Install Node dependencies (venv not required for this step): <code>cd app && npm install && cd ..</code>
 
-  ##### Start the app:
-  - Using one terminal you start the flask interface : <code>python -m app.py</code> (be careful: you need to add extension or note depending your OS).
-  - Using another terminal you start tailwind css : <code>npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css --watch </code>
-  => It will run in its watch mode 
-  - Check that you have an instance containing a game.db file in your directories.
+  ##### Start the app (two terminals, both from the project root unless noted):
+  - **Terminal 1 — Tailwind** (watches and rebuilds CSS):
+    ```bash
+    cd app
+    npm run tailwind-dev
+    ```
+  - **Terminal 2 — Flask** (activate the venv first, then run from the project root):
+    ```bash
+    source venv/bin/activate          # Linux / macOS (see activation commands above on Windows)
+    export SECRET_KEY="$(openssl rand -hex 32)"   # optional but recommended
+    export FLASK_APP=app:create_app
+    flask run --port 5000
+    ```
+  - Open http://localhost:5000/ in your browser.
+  - On first run, a <code>game.db</code> file is created at the project root.
 
 #### 👋Using the original versions (python or php)
 You need to import it on your favorit IDE and/or play from your terminal.

@@ -27,8 +27,8 @@ def index():
     else:
         return render_template('play/index.html', fl_session=fl_session)
     
-@bp.route('/us')
-def about_us():
+@bp.route('/about')
+def about():
    return render_template('play/about.html', fl_session=fl_session)
 
 @bp.route('/add_data')
