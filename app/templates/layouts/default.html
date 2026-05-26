@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="h-full">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Layout shell metrics: --shell-main-min matches measured header + footer (+ mobile nav breakpoint changes) -->
+    <style>
+        body {
+            --shell-main-min: max(0px, calc(100vh - var(--header-h) - var(--footer-h)));
+            min-height: 100vh;
+        }
+        @supports (min-height: 100dvh) {
+            body {
+                --shell-main-min: max(0px, calc(100dvh - var(--header-h) - var(--footer-h)));
+                min-height: 100dvh;
+            }
+        }
+    </style>
     
     <!-- Tarteaucitron JS -->
     <script src="{{url_for('static',filename='tarteaucitron/tarteaucitron.min.js')}}"></script>
@@ -75,9 +89,11 @@
     <title>Word Maze Game</title>
 </head>
 
-<body>
+<body class="grid min-h-0 h-full w-full grid-rows-[auto_minmax(0,1fr)_auto] bg-white dark:bg-gray-900"
+    style="--header-h: 4.75rem; --footer-h: 6rem;">
 
-    <header>
+    <!-- Sticky footer: ResizeObserver writes --header-h / --footer-h on document.body -->
+    <header id="shell-header" class="relative z-[1] shrink-0">
         <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
             <div class="container flex flex-wrap justify-between items-center mx-auto">
                 <a href="https://github.com/ExploryKod/Word-maze" class="flex items-center">
@@ -117,7 +133,8 @@
                                 aria-current="page">Home</a>
                         </li>
                         <li>
-                            <a href="play/us"
+                            <!-- Must be root-absolute (/play/...) — a bare "play/..." would resolve as /play/play/... from /play/ -->
+                            <a href="/play/about"
                                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About
                                 us</a>
                         </li>
@@ -127,10 +144,36 @@
         </nav>
     </header>
 
+    <main id="shell-main"
+        class="min-h-0 w-full min-w-0 flex flex-col overflow-x-hidden bg-white dark:bg-gray-900 [min-height:var(--shell-main-min)]">
+        {% block content %}{% endblock %}
+    </main>
 
-    {% block content %}{% endblock%}
+    <footer id="shell-footer"
+        class="shrink-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 mt-8">
+        <div class="max-w-screen-xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-sm text-gray-500 dark:text-gray-400 mb-4 md:mb-0">
+                    © 2024 Word Maze - Site de démonstration
+                </div>
+                <div class="flex flex-wrap gap-4 text-sm">
+                    <a href="{{ url_for('main.mentions_legales') }}" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                        Mentions légales
+                    </a>
+                    <span class="text-gray-400">|</span>
+                    <a href="{{ url_for('main.politique_confidentialite') }}" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                        Politique de confidentialité
+                    </a>
+                    <span class="text-gray-400">|</span>
+                    <a href="{{ url_for('main.cgu') }}" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                        CGU
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    <!-- Warning Modal -->
+    <!-- Dialog + scripts (not part of header/main/footer landmarks) -->
     <div id="warning-modal" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center">
         <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
@@ -192,29 +235,6 @@
             </div>
         </div>
     </div>
-
-    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 mt-8">
-        <div class="max-w-screen-xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="text-sm text-gray-500 dark:text-gray-400 mb-4 md:mb-0">
-                    © 2024 Word Maze - Site de démonstration
-                </div>
-                <div class="flex flex-wrap gap-4 text-sm">
-                    <a href="{{ url_for('main.mentions_legales') }}" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
-                        Mentions légales
-                    </a>
-                    <span class="text-gray-400">|</span>
-                    <a href="{{ url_for('main.politique_confidentialite') }}" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
-                        Politique de confidentialité
-                    </a>
-                    <span class="text-gray-400">|</span>
-                    <a href="{{ url_for('main.cgu') }}" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
-                        CGU
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <!-- Flowbite tailwind css components library (géré par tarteaucitron) -->
     <script>

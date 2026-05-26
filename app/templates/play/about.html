@@ -1,4 +1,119 @@
 {% extends "layouts/default.html" %}
 {% block content %}
-<p class="text-center text-lg">Cette section du site est en cours de construction</p>
+
+<div class="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-950">
+    <div class="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+
+        <!-- Hero -->
+        <header class="mb-12 text-center sm:mb-16">
+            <p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-teal-600 dark:text-teal-400 sm:text-sm">
+                Fictional studio · Est. 2019
+            </p>
+            <h1 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl md:text-5xl">
+                LexiLoop Labs
+            </h1>
+            <p class="mx-auto max-w-2xl text-base leading-relaxed text-gray-600 dark:text-gray-300 sm:text-lg">
+                We design playful puzzles and word experiences that turn curiosity into small victories—one maze,
+                one riddle, and one grin at a time.
+            </p>
+        </header>
+
+        <!-- Story + highlights -->
+        <div class="mb-12 grid gap-8 lg:grid-cols-12 lg:gap-10">
+            <article class="lg:col-span-7">
+                <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-8">
+                    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white sm:text-2xl">
+                        Our story
+                    </h2>
+                    <div class="space-y-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300 sm:text-base">
+                        <p>
+                            LexiLoop Labs began as a late-night side project between two linguistics students and a
+                            frontend developer who insisted “games should teach without feeling like homework.” Today we are
+                            a tiny, entirely fictional crew of twelve spread across imaginary time zones—from Nova Reykjavik
+                            to the floating co-working barge moored off Lisbon (again: fictional).
+                        </p>
+                        <p>
+                            We publish experiments under playful codenames, partner with indie educators, and occasionally
+                            ship a polished title when the stars align and the coffee holds out.
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+            <aside class="flex flex-col gap-4 lg:col-span-5">
+                <div class="rounded-2xl border border-teal-100 bg-teal-50/80 p-6 dark:border-teal-900/50 dark:bg-teal-950/30 sm:p-7">
+                    <h3 class="mb-2 text-sm font-semibold uppercase tracking-wide text-teal-800 dark:text-teal-200">
+                        At a glance
+                    </h3>
+                    <ul class="space-y-3 text-sm text-gray-700 dark:text-gray-200 sm:text-base">
+                        <li class="flex gap-3">
+                            <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-teal-500" aria-hidden="true"></span>
+                            <span><strong class="text-gray-900 dark:text-white">Focus:</strong> narrative word games &
+                                vocabulary play</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-teal-500" aria-hidden="true"></span>
+                            <span><strong class="text-gray-900 dark:text-white">HQ:</strong> The Rotating Zeppelin
+                                Annex, suite 404 (fictional)</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-teal-500" aria-hidden="true"></span>
+                            <span><strong class="text-gray-900 dark:text-white">Principle:</strong> no dark patterns,
+                                no shame—just clever loops</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800 sm:p-7">
+                    <blockquote class="text-sm italic leading-relaxed text-gray-600 dark:text-gray-400 sm:text-base">
+                        “If a player closes the tab smiling, we have done our job—even if they did not beat the level.”
+                    </blockquote>
+                    <p class="mt-3 text-xs font-medium text-gray-500 dark:text-gray-500 sm:text-sm">
+                        — Mira V., Lead Narrative Designer (fictional)
+                    </p>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Values: responsive grid -->
+        <section class="mb-12" aria-labelledby="values-heading">
+            <h2 id="values-heading" class="mb-6 text-center text-xl font-bold text-gray-900 dark:text-white sm:mb-8 sm:text-2xl">
+                What we optimize for
+            </h2>
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+                <div class="rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-800 sm:p-6">
+                    <h3 class="mb-2 font-semibold text-gray-900 dark:text-white">Clarity</h3>
+                    <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-300 sm:text-base">
+                        Rules you can explain in one breath. Interfaces that stay out of the way until you need them.
+                    </p>
+                </div>
+                <div class="rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-800 sm:p-6">
+                    <h3 class="mb-2 font-semibold text-gray-900 dark:text-white">Respect</h3>
+                    <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-300 sm:text-base">
+                        Fictional or not, we pretend our players have jobs, kids, and limited patience—so we never
+                        waste their time.
+                    </p>
+                </div>
+                <div class="rounded-xl rounded-b-xl border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-800 sm:col-span-2 sm:p-6 lg:col-span-1">
+                    <h3 class="mb-2 font-semibold text-gray-900 dark:text-white">Delight</h3>
+                    <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-300 sm:text-base">
+                        Micro-animations, satisfying sounds, and the occasional absurd Easter egg—because joy is part
+                        of learning.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <footer class="text-center">
+            <p class="mb-4 text-sm text-gray-600 dark:text-gray-400 sm:text-base">
+                Ready to get back to the maze?
+            </p>
+            <a href="{{ url_for('play.index') }}"
+                class="inline-flex items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white shadow transition hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:px-6 sm:text-base">
+                Play Word Maze
+            </a>
+        </footer>
+    </div>
+</div>
+
 {% endblock %}
