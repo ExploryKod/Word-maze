@@ -166,3 +166,14 @@ cython_debug/
 node_modules/
 /node_modules
 node_modules/**/*
+
+# MacOS stuff
+.DS_Store
+
+# VSCode stuff
+.vscode/
+
+# Cursor stuff
+.cursor/
+
+.flask-reload
