@@ -34,9 +34,8 @@ jobs:
         env:
           ENV_FILE_CONTENT: ${{ secrets.ENV_FILE_CONTENT }}
         run: |
-          ssh ubuntu@${{ secrets.VPS_HOST }} "
-            cd '${{ vars.VPS_PATH }}' &&
-            printf '%s' \"\$ENV_FILE_CONTENT\" > .env
+          printf '%s' "$ENV_FILE_CONTENT" | ssh ubuntu@${{ secrets.VPS_HOST }} "
+            cat > '${{ vars.VPS_PATH }}/.env'
           "
 
       - name: Install dependencies, build assets and restart service
