@@ -1,0 +1,53 @@
+name: Deploy Word-maze to VPS
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.VPS_SSH_FAR_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Sync files to VPS
+        run: |
+          rsync -az --delete \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude 'node_modules' \
+            --exclude '.venv' \
+            --exclude '.env' \
+            ./ ubuntu@${{ secrets.VPS_HOST }}:${{ vars.VPS_PATH }}
+
+      - name: Create .env on VPS
+        env:
+          ENV_FILE_CONTENT: ${{ secrets.ENV_FILE_CONTENT }}
+        run: |
+          ssh ubuntu@${{ secrets.VPS_HOST }} "
+            cd '${{ vars.VPS_PATH }}' &&
+            printf '%s' \"\$ENV_FILE_CONTENT\" > .env
+          "
+
+      - name: Install dependencies, build assets and restart service
+        run: |
+          ssh ubuntu@${{ secrets.VPS_HOST }} "
+            cd '${{ vars.VPS_PATH }}' &&
+            python3 -m venv .venv &&
+            .venv/bin/pip install --upgrade pip &&
+            .venv/bin/pip install -r requirements.txt &&
+            npm ci &&
+            npm run tailwind &&
+            sudo systemctl restart word-maze &&
+            sudo systemctl is-active --quiet word-maze
+          "
