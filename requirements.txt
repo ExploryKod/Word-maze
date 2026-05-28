@@ -2,7 +2,7 @@ setuptools>=65.0.0
 Flask==2.2.3
 flask_sqlalchemy==3.0.3
 SQLAlchemy==2.0.4
-gunicorn==20.1.0
+gunicorn==22.0.0
 mysql-connector==2.2.9
 Werkzeug==2.2.3
 
