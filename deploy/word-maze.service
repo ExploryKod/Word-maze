@@ -7,7 +7,10 @@ User=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/Word-maze
 EnvironmentFile=/home/ubuntu/Word-maze/.env
-ExecStart=/home/ubuntu/Word-maze/.venv/bin/gunicorn -w 3 -b 127.0.0.1:5000 "app:create_app()"
+# bash -c keeps "app:create_app()" as one argument (parentheses break plain ExecStart)
+ExecStart=/bin/bash -lc 'exec /home/ubuntu/Word-maze/.venv/bin/gunicorn -w 3 -b 127.0.0.1:5000 "app:create_app()"'
+StandardOutput=journal
+StandardError=journal
 Restart=always
 RestartSec=3
 
