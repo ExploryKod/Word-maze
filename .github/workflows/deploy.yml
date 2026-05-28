@@ -28,6 +28,8 @@ jobs:
             --exclude 'node_modules' \
             --exclude '.venv' \
             --exclude '.env' \
+            --exclude 'game.db' \
+            --exclude '*.db' \
             ./ ubuntu@${{ secrets.VPS_HOST }}:${{ vars.VPS_PATH }}
 
       - name: Create .env on VPS
@@ -48,6 +50,8 @@ jobs:
             cd app &&
             npm ci &&
             npm run tailwind &&
+            sudo cp deploy/word-maze.service /etc/systemd/system/word-maze.service &&
+            sudo systemctl daemon-reload &&
             sudo systemctl restart word-maze &&
             sudo systemctl is-active --quiet word-maze
           "
