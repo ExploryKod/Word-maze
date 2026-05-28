@@ -26,6 +26,8 @@ jobs:
         run: |
           npm ci
           npm run tailwind
+          test -s static/dist/css/output.css
+          echo "output.css size: $(wc -c < static/dist/css/output.css) bytes"
 
       - name: Setup SSH
         run: |
