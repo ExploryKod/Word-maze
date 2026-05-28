@@ -13,6 +13,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Build Tailwind on the runner (VPS does not need Node/npm)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Build Tailwind CSS
+        working-directory: app
+        run: |
+          npm ci
+          npm run tailwind
+
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
@@ -40,16 +54,13 @@ jobs:
             cat > '${{ vars.VPS_PATH }}/.env'
           "
 
-      - name: Install dependencies, build assets and restart service
+      - name: Install Python deps and restart service
         run: |
           ssh ubuntu@${{ secrets.VPS_HOST }} "
             cd '${{ vars.VPS_PATH }}' &&
             python3 -m venv .venv &&
             .venv/bin/pip install --upgrade pip &&
             .venv/bin/pip install -r requirements.txt &&
-            cd app &&
-            npm ci &&
-            npm run tailwind &&
             sudo cp deploy/word-maze.service /etc/systemd/system/word-maze.service &&
             sudo systemctl daemon-reload &&
             sudo systemctl restart word-maze &&
