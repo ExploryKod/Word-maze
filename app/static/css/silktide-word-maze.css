@@ -1,0 +1,40 @@
+/**
+ * Word Maze — Silktide Consent Manager overrides (Flowbite blue, dark via html.dark).
+ */
+#stcm-wrapper {
+  --fontFamily: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --primaryColor: #1d4ed8;
+  --backgroundColor: #ffffff;
+  --textColor: #111827;
+  --boxShadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --backdropBackgroundColor: rgba(255, 255, 255, 0.8);
+  --backdropBackgroundBlur: 0px;
+  --iconColor: #1d4ed8;
+  --iconBackgroundColor: #ffffff;
+}
+
+html.dark #stcm-wrapper {
+  --primaryColor: #3b82f6;
+  --backgroundColor: #1f2937;
+  --textColor: #f9fafb;
+  --backdropBackgroundColor: rgba(17, 24, 39, 0.8);
+  --iconColor: #60a5fa;
+  --iconBackgroundColor: #1f2937;
+}
+
+#stcm-wrapper a {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+html.dark #stcm-wrapper a {
+  color: #60a5fa;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #stcm-wrapper * {
+    transition: none !important;
+  }
+}
