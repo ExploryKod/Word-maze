@@ -1,16 +1,14 @@
+const path = require("path");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./templates/**/*.html",
-    "./templates/layouts/default.html",
-    "./static/src/**/*.js",
-    "./node_modules/flowbite/**/*.js"
+    path.join(__dirname, "templates/**/*.html"),
+    path.join(__dirname, "static/**/*.js"),
+    path.join(__dirname, "node_modules/flowbite/**/*.js"),
   ],
   theme: {
     extend: {},
   },
-  plugins: [
-    require("flowbite/plugin")
-    ],
-}
-
+  plugins: [require("flowbite/plugin")],
+};

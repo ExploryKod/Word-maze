@@ -20,72 +20,18 @@
         }
     </style>
     
-    <!-- Tarteaucitron JS -->
-    <script src="{{url_for('static',filename='tarteaucitron/tarteaucitron.min.js')}}"></script>
-    <script src="{{url_for('static',filename='tarteaucitron/tarteaucitron.services.min.js')}}"></script>
-    <script src="{{url_for('static',filename='tarteaucitron/flowbite.service.js')}}"></script>
-    
-    <!-- Initialisation de Tarteaucitron -->
-    <script type="text/javascript">
-    tarteaucitron.init({
-        "privacyUrl": "{{ url_for('main.politique_confidentialite') }}", /* URL de la politique de confidentialité */
-        "bodyPosition": "top", /* top pour l'accessibilité */
-        
-        "hashtag": "#tarteaucitron", /* Ouvrir le panneau avec ce hashtag */
-        "cookieName": "tarteaucitron", /* Nom du cookie */
-        
-        "orientation": "middle", /* Position de la bannière (top - bottom - middle) */
-        
-        "groupServices": true, /* Grouper les services par catégorie */
-        "showDetailsOnClick": true, /* Cliquer pour développer la description */
-        "serviceDefaultState": "wait", /* État par défaut (true - wait - false) */
-        
-        "showAlertSmall": false, /* Afficher la petite bannière en bas à droite */
-        "cookieslist": false, /* Afficher la liste des cookies dans une mini bannière */
-        "cookieslistEmbed": false, /* Afficher la liste des cookies sur le panneau de contrôle */
-        
-        "closePopup": true, /* Afficher un X pour fermer la bannière */
-        
-        "showIcon": true, /* Afficher l'icône cookie pour gérer les cookies */
-        "iconPosition": "BottomRight", /* Position de l'icône cookie (BottomRight - BottomLeft - TopRight - TopLeft) */
-        
-        "adblocker": false, /* Afficher un avertissement si un bloqueur de pub est détecté */
-        
-        "DenyAllCta": true, /* Afficher le bouton tout refuser */
-        "AcceptAllCta": true, /* Afficher le bouton tout accepter */
-        "highPrivacy": true, /* RECOMMANDÉ : Désactiver le consentement automatique */
-        "alwaysNeedConsent": false, /* Demander le consentement pour les services "Privacy by design" */
-        
-        "handleBrowserDNTRequest": false, /* Si Do Not Track == 1, tout refuser */
-        
-        "removeCredit": false, /* Retirer le lien de crédit */
-        "moreInfoLink": true, /* Afficher le lien plus d'infos */
-        
-        "useExternalCss": false, /* Mode expert : ne pas charger le fichier tarteaucitron.css */
-        "useExternalJs": false, /* Mode expert : ne pas charger les fichiers js tarteaucitron */
-        
-        "readmoreLink": "{{ url_for('main.politique_confidentialite') }}", /* Lien vers la politique de confidentialité */
-        
-        "mandatory": true, /* Afficher un message sur les cookies obligatoires */
-        "mandatoryCta": false, /* Afficher le bouton accepter désactivé quand mandatory est activé */
-        
-        "googleConsentMode": false, /* Activer Google Consent Mode v2 pour Google ads & GA4 */
-        "bingConsentMode": false, /* Activer Bing Consent Mode pour Clarity & Bing Ads */
-        "pianoConsentMode": false, /* Activer Consent Mode pour Piano Analytics */
-        "softConsentMode": false, /* Mode consentement doux (le consentement est requis pour charger les services) */
-        
-        "dataLayer": false, /* Envoyer un événement à dataLayer avec le statut des services */
-        "serverSide": false, /* Côté serveur uniquement, les tags ne sont pas chargés côté client */
-        
-        "partnersList": true /* Afficher le nombre de partenaires sur le popup/bannière */
-    });
-    </script>
+    <!-- Silktide Consent Manager (remplace tarteaucitron) -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="stylesheet" id="silktide-consent-manager-css" href="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.0/silktide-consent-manager.css" integrity="sha384-IO1E/jCrQXyH5rwcI0SXP7OXw47JFqQNDQcKhbFvqnL2IunBxxwE2Ne5XyAmCqKs" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/silktide-word-maze.css') }}">
+    <script src="https://cdn.jsdelivr.net/gh/silktide/consent-manager@v2.0.0/silktide-consent-manager.js" integrity="sha384-j4NIMOecmtzMWe9GJADIIe5hTlHG63aiTQ/2XorW10RNyQJg+IU+xwFVDy45wBah" crossorigin="anonymous"></script>
     
     <!-- Compiled and minified CSS - materialize -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
-
+  
     <title>Word Maze Game</title>
 </head>
 
@@ -236,69 +182,109 @@
         </div>
     </div>
 
-    <!-- Flowbite tailwind css components library (géré par tarteaucitron) -->
-    <script>
-    (tarteaucitron.job = tarteaucitron.job || []).push('flowbite');
-    </script>
-    <script>
-    tarteaucitron.user.flowbite = function () {
-        var script = document.createElement('script');
-        script.src = 'https://unpkg.com/flowbite@1.5.3/dist/flowbite.js';
-        script.async = true;
-        document.head.appendChild(script);
-    };
-    </script>
     <script src="{{url_for('static', filename='js/script.js')}}"></script>
     <script>
-        // Show warning modal on page load if not already accepted
-        document.addEventListener('DOMContentLoaded', function() {
-            const warningAccepted = localStorage.getItem('warningAccepted');
-            if (!warningAccepted) {
-                // Wait for Flowbite to be loaded
-                setTimeout(function() {
-                    const modal = document.getElementById('warning-modal');
-                    if (modal) {
-                        // Remove hidden class and add necessary classes to show modal
-                        modal.classList.remove('hidden');
-                        modal.setAttribute('aria-hidden', 'false');
-                        
-                        // Add backdrop
-                        const backdrop = document.createElement('div');
-                        backdrop.id = 'warning-modal-backdrop';
-                        backdrop.className = 'fixed inset-0 bg-gray-900 bg-opacity-50 dark:bg-opacity-80 z-40';
-                        document.body.appendChild(backdrop);
-                        document.body.style.overflow = 'hidden';
-                        
-                        // Function to close modal
-                        function closeModal() {
-                            localStorage.setItem('warningAccepted', 'true');
-                            modal.classList.add('hidden');
-                            modal.setAttribute('aria-hidden', 'true');
-                            const backdropEl = document.getElementById('warning-modal-backdrop');
-                            if (backdropEl) {
-                                backdropEl.remove();
-                            }
-                            document.body.style.overflow = '';
-                        }
-                        
-                        // Handle accept button
-                        const acceptBtn = document.getElementById('accept-warning-btn');
-                        if (acceptBtn) {
-                            acceptBtn.addEventListener('click', closeModal);
-                        }
-                        
-                        // Handle close button
-                        const closeBtn = document.getElementById('close-warning-modal');
-                        if (closeBtn) {
-                            closeBtn.addEventListener('click', closeModal);
-                        }
-                        
-                        // Handle backdrop click
-                        backdrop.addEventListener('click', closeModal);
-                    }
-                }, 100);
+        function wordMazeShowWarningModal() {
+            if (localStorage.getItem('warningAccepted')) {
+                return;
             }
+            var modal = document.getElementById('warning-modal');
+            if (!modal || modal.getAttribute('aria-hidden') === 'false') {
+                return;
+            }
+            modal.classList.remove('hidden');
+            modal.setAttribute('aria-hidden', 'false');
+
+            var backdrop = document.createElement('div');
+            backdrop.id = 'warning-modal-backdrop';
+            backdrop.className = 'fixed inset-0 bg-gray-900 bg-opacity-50 dark:bg-opacity-80 z-40';
+            document.body.appendChild(backdrop);
+            document.body.style.overflow = 'hidden';
+
+            function closeModal() {
+                localStorage.setItem('warningAccepted', 'true');
+                modal.classList.add('hidden');
+                modal.setAttribute('aria-hidden', 'true');
+                var backdropEl = document.getElementById('warning-modal-backdrop');
+                if (backdropEl) {
+                    backdropEl.remove();
+                }
+                document.body.style.overflow = '';
+            }
+
+            var acceptBtn = document.getElementById('accept-warning-btn');
+            if (acceptBtn) {
+                acceptBtn.addEventListener('click', closeModal, { once: true });
+            }
+            var closeBtn = document.getElementById('close-warning-modal');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal, { once: true });
+            }
+            backdrop.addEventListener('click', closeModal, { once: true });
+        }
+
+        function wordMazeMaybeShowWarningModal() {
+            var manager = window.silktideConsentManager.getInstance();
+            if (manager && manager.getConsentChoice('preferences') === true) {
+                wordMazeShowWarningModal();
+            }
+        }
+
+        window.silktideConsentManager.init({
+            backdrop: { show: true },
+            icon: { position: "bottomRight" },
+            prompt: { position: "center" },
+            consentTypes: [
+                {
+                    id: "essential",
+                    label: "Fonctionnel",
+                    required: true,
+                    description: "<p>Cookies strictement nécessaires (session de connexion, sécurité). Le bandeau enregistre aussi vos choix de consentement dans le navigateur.</p>"
+                },
+                {
+                    id: "preferences",
+                    label: "Préférences",
+                    defaultValue: false,
+                    description: "<p>Mémorisation de l'acceptation de l'avertissement d'utilisation du site de démonstration.</p>",
+                    onAccept: wordMazeMaybeShowWarningModal,
+                    onReject: function () {
+                        localStorage.removeItem("warningAccepted");
+                    }
+                },
+                {
+                    id: "ui",
+                    label: "Interface (Flowbite)",
+                    defaultValue: false,
+                    description: "<p>Chargement de la bibliothèque Flowbite (CDN) pour les composants d'interface, notamment le menu mobile.</p>",
+                    scripts: [{
+                        url: "https://unpkg.com/flowbite@1.5.3/dist/flowbite.js",
+                        load: "async"
+                    }]
+                }
+            ],
+            text: {
+                prompt: {
+                    description: "<p>Ce site utilise des cookies et technologies similaires. Consultez notre <a href=\"{{ url_for('main.politique_confidentialite') }}\">politique de confidentialité</a>.</p>",
+                    acceptAllButtonText: "Tout accepter",
+                    acceptAllButtonAccessibleLabel: "Accepter tous les cookies",
+                    rejectNonEssentialButtonText: "Tout refuser",
+                    rejectNonEssentialButtonAccessibleLabel: "Refuser tous les cookies non essentiels",
+                    preferencesButtonText: "Personnaliser",
+                    preferencesButtonAccessibleLabel: "Personnaliser les cookies"
+                },
+                preferences: {
+                    title: "Gestion des cookies",
+                    description: "<p>Choisissez les catégories que vous autorisez. Les cookies fonctionnels ne peuvent pas être désactivés.</p>",
+                    saveButtonText: "Enregistrer",
+                    saveButtonAccessibleLabel: "Enregistrer vos préférences de cookies",
+                    creditLinkText: "",
+                    creditLinkAccessibleLabel: ""
+                }
+            },
+            onAcceptAll: wordMazeMaybeShowWarningModal
         });
+
+        document.addEventListener('DOMContentLoaded', wordMazeMaybeShowWarningModal);
     </script>
 </body>
 
